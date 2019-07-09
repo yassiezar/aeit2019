@@ -26,6 +26,7 @@ Nicola Bellotto\inst{1}}
 \authorrunning{Jacobus C. Lock et.\ al.}
 
 \maketitle
+\setcounter{footnote}{0}
 
 \begin{abstract}
 	%Our aim is to build a portable active navigation system for people with visual impairments that uses active perception techniques and a combination of feedback modes to identify a scene and guide a user to their destination.
@@ -38,7 +39,7 @@ Nicola Bellotto\inst{1}}
 \section{Introduction}
 
 In recent years, governments have spearheaded numerous initiatives to support people with disabilities and enable them to play a more active role in modern society.
-The UK's Royal National Institute of Blind People (RNIB) for example has prioritised improving access to everyday services and products, such as public transport and mobile apps~\cite{rnib-objectives}.
+The UK's Royal National Institute of Blind People (RNIB) for example has prioritised improving access to everyday services and products, such as public transport and mobile apps~\cite{rnib2016uk}.
 Improvements in modern computing have made it possible for new and innovative solutions to these problems to come to the fore.
 In particular, researchers in the active vision field have have made much progress in enabling machines to autonomously manipulate cameras to gather information about an environment for mapping and object and object finding tasks~\cite{bajcsy2018revisiting}.
 There is, however, a significant research question about whether techniques from active machine vision can be applied to humans, i.e.\ can a machine identify a point of interest in a scene and direct a human, instead of an electronic servo, to focus on that point?
@@ -53,14 +54,10 @@ A sound source can be spatialised by adjusting a tone's spectral make-up (elevat
 Here only the pan and elevation positions are transmitted.
 However, since bone-conducting headphones bypass the outer ear structure, their spectral signature cannot properly be interpreted and we therefore convey the target's elevation angle by simply adjusting the tone's pitch.
 
-%For this work, we investigate implementing such an interface that uses audio signals to transmit guidance instructions by exploiting the human auditory and psychoacoustic systems. 
-%Initially the interface is implemented in 2D only (pan and tilt dimensions) to provide the user with audio instructions on where to point the device and our approach was validated through a set of simple pointing tasks. 
-
 \begin{figure}
   \centering
   \subfloat[]{\label{fig:tango-headphone}\includegraphics[width=0.4\columnwidth]{figures/tango_headphone.png}}
-  %\includegraphics[width=0.5\columnwidth]{figures/tango_headphone.png}}
-  ~
+~
   \subfloat[]{\label{fig:participant}\includegraphics[width=0.25\columnwidth]{figures/vi_participant.pdf}}
   \caption{Pictures of the Tango device and bone-conducting headphones the system is based on (left) and both in use in an experiment (right).}\label{fig:tango-headphone}
 \end{figure}
@@ -82,7 +79,41 @@ Guidance instruction delivery modes using haptic, audio and vocal feedback for n
 
 Previous work on HRTF stuff
 
-\section{Interface Implementation}
+\section{Interface Description}
+
+\subsection{Hardware Selection}
+
+Electronic navigation aids and guidance systems for people with vision impairments have had trouble appealing to the visually impaired community at large because of problems that are typical of academic research and prototypes: prohibitive costs and user unfriendly interfaces and hardware requirements, e.g.\ head-mounted cameras and GPS antennae~\cite{golledge2004stated,yusif2016older,arditi2013user}.
+Indeed, the traditional walking cane remains the go-to tool for navigation and obstacle avoidance. 
+With the ActiVis system, we hope to tackle the issue of cost, user-acceptance and usability by using as many as possible `standard' devices and hardware as possible, with the idea that no specialist hardware is required and the user will not stand out if seen walking in public with a phone in their hand and wearing a headset.
+The ActiVis system is based on a concept proposed in~\cite{bellotto2013multimodal,lock2017portable}, which uses a Google Tango device that is an Android-based device that comes equipped with an RGB-D camera to sense colour and depth and combines an inertial measurement unit (IMU) with powerful and robust landmark recognition and image processing algorithms to localise itself in real-time.
+An benefit of such a platform is its familiar, compact form-factor which will help overcome the hurdle of user-acceptance and usability.
+
+A set of bone-conducting headphones was selected as the audio transmission medium.
+These headphones sit on a user's cheekbones and conduct the audio signals through the skull into the inner ear, instead of through the outer ear like typical over-ear headphones do. 
+This has the benefit of not denying the user access to ambient sounds and noise, which could prove dangerous to a person with limited vision that relies on sound to detect oncoming vehicles and people, for example~\cite{lichtenstein2012headphone}.
+Open-back headphones that allow ambient noise through were also considered, but the AfterShockz headphones pictured in \cref{fig:tango-headphone} were ultimately selected since they do not interfere at all with incoming sound (open-back headphones are better than closed back ones in this regard, but still muffle incoming sound) and are also more discreet than the larger over-ear headphone models. 
+
+%Our ultimate goal is to deliver a navigation system that can guide a user with visual impairments on the last leg of their journey (e.g.\ to a specific aisle and shelf in a shop) using only a mobile phone.
+%A large amount of data need to be translated from a visual form into a format that is useful to people with limited or no vision.
+%We therefore plan to use a combination of voice, audio and vibration cues to translate visual navigation data as effectively as possible and overcome the bandwidth limitation of the human ear. 
+%However, for this paper, we only considered the spatialised audio mode and its variation in pitch in order to determine its effectiveness in conveying a target's pan and tilt angles.
+
+%The system is based on a concept proposed in~\cite{bellotto2013,lock2017portable}, which uses a Google Tango device.
+%The navigation system is based on a Google Tango tablet, an Android-based device that comes equipped with an RGB-D camera to sense colour and depth and combines an inertial measurement unit (IMU) with powerful and robust landmark recognition and image processing algorithms to localise itself in real-time.
+%An added benefit of this platform is its familiar, compact form-factor which will help overcome the hurdle of user-acceptance and usability.
+%The guidance instructions are presented through a set of bone-conducting headphones (see \cref{fig:tango-headphone}) that are placed externally on a user's head so that the system does not occlude the perception of real-world sounds and does not interfere with a user's normal hearing function.
+
+%A diagram of the experimental system pipeline is shown in \cref{fig:pipeline}, where the arrows indicate the direction of the flow of information.
+%When the user taps the Tango's screen, a new virtual target is generated and its coordinates are sent to the audio generation module, along with the device's current position and orientation.
+%The audio generator then produces a tone based on the difference between the device and target's positions and sends it to the audio output channel, which plays it back to the user.
+%The WiFi recording module is constantly monitoring the different parameter values of the device and target's positions, as well as the system's output, and records it to a remotely stored datafile. 
+
+%\begin{figure}
+  %\centering
+  %\includegraphics[clip=true, trim=0 120 80 50, width=1.0\columnwidth]{figures/pipeline.pdf}
+  %\caption{A diagram of the individual system components and their communication pipelines. $F$ indicates a feedback signal and $P$ a pose signal. }\label{fig:pipeline}
+%\end{figure}
 
 \subsection{Human Audio Localisation}
 
@@ -109,73 +140,40 @@ The pan angle can be conveyed by transforming the audio signal with an HRTF, and
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.3\columnwidth]{figures/camera_coordinate.pdf}
-  \caption{A diagram showing the device's frame of reference and the target's pan and tilt angles.}\label{fig:cam-coords}
+  \subfloat[]{\label{fig:cam-coords}\includegraphics[width=0.3\columnwidth]{figures/camera_coordinate.pdf}}
+~
+  \subfloat[]{\label{fig:pitch-gain}\includegraphics[clip, trim=0 0 0 40, width=0.6\columnwidth]{figures/pitch_gain_functions.png}}
+  \caption{The reference system used by the guidance interface showing the camera vector and pan and elevation angles (left) and the pitch gain function used to convey the target's elevation angle (right). }
 \end{figure}
-
-%The audio signal used for this work is a simple \SI{10}{\hertz} sinusoidal wave that is easy to manipulate and analyse.
-%People have trouble localising a pure sine wave given its lack of spectral features
-
-%The audio component is responsible for conveying the 2D position of a target on the vertical plane, shown by \cref{fig:cam-coords}, in terms of pan and tilt angles.
-%The audio signal is a continuous \SI{10}{\hertz} sinusoidal sound wave that is played to the user through bone-conducting headphones.
-%We use a sinusoidal wave here because it is relatively simple to manipulate and analyse and will be replaced by a richer, more natural tone at a later stage. 
-
-%The audio is spatialised in the pan dimension using the OpenAL\footnote{\url{http://openal.org}} sound library's HRTF, while the tilt angle is conveyed by varying the audio tone's pitch.
-%We use this approach because the external set of bone-conducting headphones plays the sound through a user's cheekbones instead of their outer ears, bypassing the ears' pennae that provide the ability to localise elevated sound sources~\cite{roffler1968factors,algazi2001elevation}.
-%This makes an HRTF less effective in conveying the target's elevation and therefore needs to be conveyed using another method; by varying the tone's pitch in this case.
-%The difference between the target's angular position and the device's angular orientation are used to generate the audio signals. 
 
 \subsubsection{Pan}
 
-The human audition system uses binaural comparison cues, such as the inter-aural time and level differences (ITD and ILD respectively), to localise a sound source on the horizontal plane.
+The human audition system uses binaural comparison cues, such as the inter-aural time and level differences (ITD and ILD respectively), to localise a sound source on the horizontal plane~\cite{blauert1969sound}.
 The ITD is the perceived time delay between the signal reaching both ears, while the ILD is the perceived volume difference in the signal.
 For example, a sound that comes from the individual's right, will hit the right ear first with a slightly higher volume.
 
-In this work, a pure sinusoidal wave oscillating at \SI{10}{\hertz} was used. 
+In this work, a pure sinusoidal wave refreshed at \SI{10}{\hertz} was used. 
 People typically have trouble localising a pure tone devoid of a rich spectral signature.
 However, the ITD and ILD is independent of the tone's spectral make-up and the elevation angle is given through a different mechanism.
 A pure sine wave is therefore sufficient to convey the target's pan angle.
-To transform the signal, we used OpenAL's default HRTF, based on the MIT's KEMAR dataset\cite{hiebert2005openal,gardner1995hrtf}, that uses the user and targets' positions as input and outputs a transformed audio signal.
-
-%The pan angle ($\phi$) describes the angle which the user needs to rotate the camera vector, $C$, around the $z$-axis shown in \cref{fig:cam-coords}, i.e.\ how far the target is to the left or right of the user.
-%We use an HRTF to add a spatial element to the audio tone that is played to the user, placing the sound source at the target's location. 
-%Humans determine a sound source's pan direction by subconsciously analysing the inter-aural time difference (IID) between a sound reaching both of your ears: the greater the IID, the greater the perceived angular distance to the sound source~\cite{wightman1992dominant}.
-
-%We implement OpenAL's default HRTF, based on the MIT's KEMAR dataset\footnote{\url{http://sound.media.mit.edu/resources/KEMAR.html}}, to generate a sinusoidal sound wave based on the difference between the user and target's positions.
-%The library takes position values as input and outputs a tone based on the angle between the two position vectors. 
+To transform and spatialise the audio signal, we used OpenAL's default HRTF, based on the MIT's KEMAR dataset~\cite{hiebert2005openal,gardner1995hrtf}, that uses the user and targets' positions as input and outputs a transformed audio signal.
 
 \subsubsection{Elevation}
 
-%The system adjusts the tone's pitch ($f$) to convey the target's tilt angle ($\theta$) w.r.t.\ $C$. 
-%Here, a high pitch means the target is above $C$ (i.e.\ the user should look up) and a low pitch means the target is below $C$ (the user should look down).
-%This high/low association scheme is chosen because humans naturally associate high-pitched sounds with higher objects and lower-pitched noises with lower objects~\cite{pratt1930spatial,blauert1997spatial}.
-%We use a logarithmic, octave-based gain function for the pitch, since an increase in octave provides a distinct perceptible change while keeping the timbre roughly constant~\cite{shepard1964circularity}.
+Using a generic HRTF, such as OpenAL's KEMAR implementation, with bone-conducting headphones has been shown to have trouble conveying the elevation angle of a sound source accurately~\cite{macdonald2006spatial,schonstein2008comparison}.
+To compensate for this, we convey the target's elevation angle by adjusting the tone's pitch (i.e.\ the sine wave's frequency) as a function of the elevation. 
+When the camera vector is at the target's elevation, the tone is set to neutral pitch.
+Then, when the target is above the camera vector, the pitch is increased and decreased when the target is below the camera vector.
+This high/low association scheme is used given humans' natural association of high-pitched sounds with elevated sound sources and lower-pitched sounds with source's below the individual's earline~\cite{pratt1930spatial,blauert1997spatial}.
+A logarithmic, octave and semi-tone based function is used to adjust the tone's pitch to ensure perceptible changes while keeping the timbre roughly constant~\cite{shepard1964circularity}.
+The pitch is updated at a rate of \SI{10}{\hertz} and changes as the user moves the device.
 
-%We wish to determine how the gradient, $m$, of the pitch gain as a function of $\theta$ (i.e.\ $m = \frac{df}{d\theta}$) affects a user's performance, e.g.\ does a greater $m$ lead to an increased target acquisition rate?
-%For this we select 3 different pitch settings, referred to henceforth as $m_l$, $m_m$ and $m_h$ for the smallest, middle and highest gain gradients respectively. 
-%To find these gradients, we set the maximum and minimum limits for $\theta$ and the maximum and minimum frequencies for $f$ for each respective setting.
-%Furthermore, for the sake of consistency and between the different settings, each gradient generates the same pitch when $C$ is level with the target's tilt. 
-
-%After practical tests with the device and headphones, we set the neutral, on-target tone to $f_{512} =$ \SI{512}{\hertz} for its audibility.
-%For $m_l$, we set $f_{max}$ and $f_{min}$ to 1 octave higher and lower than $f_{512}$, giving limits of \SI{1024}{\hertz} and \SI{256}{\hertz} respectively.
-%For $m_m$, the $f_{max}$ and $f_{min}$ are set to 2 octaves higher and lower than $f_{512}$ (\SI{2048}{\hertz} and \SI{128}{\hertz}) and $m_h$ to 3 octaves higher and lower (\SI{4096}{\hertz} and \SI{64}{\hertz}).
-%These limits were selected for practical reasons, because the bone conducting headphones have low volume gain at the frequency spectrum extremes, making it difficult to hear. 
-%The values of $m_l, m_m, m_h$ are visualised in \cref{fig:pitch-gain}.
-
-%\begin{figure}
-  %\centering
-  %\includegraphics[clip, trim=0 0 0 40, width=1.0\columnwidth]{figures/pitch_gain_functions.png}
-  %\caption{The pitch gain functions for the 3 different gain settings ($y$-axis in log scale). }\label{fig:pitch-gain}
-%\end{figure}
-
-%We set the range of angles the system can convey to $[-\frac{\pi}{2}; \frac{\pi}{2}]$; anything outside this range implies that the target is behind the user and was not considered in this series of experiments. 
-%The \SI{0}{\radian} position is directly in front of the user.
-%With these limits, $f$ can be determined with 
-
-%\begin{equation}\label{eq:frequency}
-  %f(\theta) = 2^{b\theta + c},
-%\end{equation}
-%where $b$ and $c$ for each setting can be calculated according to the given setting's pitch and angle limits.% and a linear graph equation (i.e.\ $f - f_1 = b(\theta - \theta_1), b=\frac{\Delta f}{\Delta\theta}$).
+The pitch is changed as a linear function of the elevation angle and the gradient is determined by setting the angle and pitch limits.
+For this work we only consider a \SI{180}{\degree} field of view in front of the user and limit the elevation angle to a range of $[-\frac{\pi}{2}, \frac{\pi}{2}]$.
+The pitch limits are set at some integer number of octaves above and below the neutral, on-elevation pitch.
+After practical tests with the interface, we set the neutral pitch to \SI{512}{\hertz}, which is comfortably audible and allows for a large number of audible octave limits to be selected.
+For this work, we set the pitch limits to 2 octaves away from the neutral pitch, giving frequency limits of [\SI{128}{\hertz}, \SI{2048}{\hertz}].
+The linear function is visualised in \cref{fig:pitch-gain}.
 
 \subsection{Implementation}
 
