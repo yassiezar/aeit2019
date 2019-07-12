@@ -29,10 +29,6 @@ Nicola Bellotto\inst{1}}
 \setcounter{footnote}{0}
 
 \begin{abstract}
-	%Our aim is to build a portable active navigation system for people with visual impairments that uses active perception techniques and a combination of feedback modes to identify a scene and guide a user to their destination.
-	%Such a system requires a non-visual feedback interface and in this paper we investigate the effectiveness of a spatial audio tone with a varying pitch component, played through bone-conducting headphones, in conveying the pan and tilt angles of a target to the user in a pointing task.
-	%The secondary goal is to determine how variations to the pitch's rate of change affect the user's performance.
-	%For this, we conducted a set of experiments with both blindfolded participants and participants with visual impairments and found that, with some limitations, a spatialised audio tone with a varying pitch component can successfully convey a target's pan and tilt angles. 
   The ActiVis project is attempting to build a mobile guidance aid to help people with limited vision search for objects within an unknown environment.
   This system requires an effective non-visual interface to transmit guidance instructions to the user through means of bone-conducting headphones.
   To this end we propose a audio-based interface that uses a spatialised signal to convey a target's position on the horizontal plane. 
@@ -54,11 +50,7 @@ If this can be done, it would be beneficial to people with visual impairments an
 The ActiVis project aims to deliver a mobile guidance system based on the Google Project Tango platform\footnote{\url{https://en.wikipedia.org/wiki/Tango\_(platform)}}, pictured in \cref{fig:tango-headphone}, that will ultimately be able to guide a user with vision impairments on the last leg of their journey, i.e.\ the so-called `last 10-yard problem'. 
 The entire platform is based on a Google Project Tango device that provides access to powerful real-time localisation (through IMU measurements and landmark tracking) and image-processing facilities and provides access to Android's full range of interface tools and IO options. 
 Furthermore, a set of bone-conducting headphones (pictured in \cref{fig:tango-headphone}) that are placed on a user's cheekbones instead of their ears and do not interfere with normal hearing, are used to transmit the audio signals to the user.
-The system will provide real-time guidance instructions for the user to follow and it is important that these instructions are easily understood and are not perceived as a cognitive burden. 
-Humans are naturally able to determine the 3D position of a sound source and by exploiting this ability, the system's guidance instructions can naturally be interpreted without posing a unnecessary burdensome cognitive load.
-A sound source can be spatialised by adjusting a tone's spectral make-up (elevation angle), time delay and level difference (pan angle) and the intensity (distance).
-Here only the pan and elevation positions are transmitted.
-However, since bone-conducting headphones bypass the outer ear structure, their spectral signature cannot properly be interpreted and we therefore convey the target's elevation angle by simply adjusting the tone's pitch.
+The system provides the user with real-time guidance instructions and it is important that these instructions are easily understood and do not add a significant cognitive burden. 
 
 \begin{figure}[t]
   \centering
@@ -68,11 +60,13 @@ However, since bone-conducting headphones bypass the outer ear structure, their 
   \caption{Pictures of the Tango device and bone-conducting headphones the system is based on (left) and both in use in an experiment (right).}
 \end{figure}
 
+Humans are naturally able to determine the 3D position of a sound source and by exploiting this ability, our system's guidance instructions can naturally be interpreted without posing a significant cognitive load.
+A sound source can be spatialised by adjusting a tone's spectral make-up (elevation angle), time delay and level difference (pan angle) and the intensity (distance).
+Here only the pan and elevation positions are transmitted.
+However, since bone-conducting headphones bypass the outer ear structure, their spectral signature cannot properly be interpreted and we therefore convey the target's elevation angle by adjusting the tone's pitch.
 A similar approach was used in\cite{durette2008visuo}, but the study did not focus on or investigate the interface's efficacy.
 Indeed, this work serves as an initial study into an interface that can effectively communicate the pan and elevation angles of a target location through a set of bone-conducting headphones using a standard head-related transfer function (HRTF).
 Furthermore, we demonstrate our approach's effectiveness through a simple experiment.
-%The contribution of this work is an effective approach to addressing the shortcomings of playing spatialised sound through bone-conducting headphones, as well as initial experiments demonstrating its effectivenesst
-%Furthermore, we demonstrate that such an interface is effective at communicating 
 
 The rest of the paper starts off by discussing previous relevant works and research in \cref{sec:prev-work}, followed by a discussion on the design and implementation of our interface in \cref{sec:interface-design}.
 This is followed by a description of the experiments that were conducted and a discussion of their results in \cref{sec:experiment-and-results}.
@@ -93,9 +87,10 @@ Previous work on HRTF stuff
 
 \subsection{Hardware Selection}
 
-Electronic navigation aids and guidance systems for people with vision impairments have had trouble appealing to the visually impaired community at large because of problems that are typical of academic research and prototypes: prohibitive costs and user unfriendly interfaces and hardware requirements, e.g.\ head-mounted cameras and GPS antennae~\cite{golledge2004stated,yusif2016older,arditi2013user}.
+Electronic navigation aids and guidance systems for people with vision impairments have had trouble appealing to the visually impaired community at large because of problems that are common of academic research and prototypes: prohibitive costs, unfriendly user interfaces and significant hardware requirements, e.g.\ head-mounted cameras and GPS antennae~\cite{golledge2004stated,yusif2016older,arditi2013user}.
 Indeed, the traditional walking cane remains the go-to tool for navigation and obstacle avoidance. 
-With the ActiVis system, we hope to tackle the issue of cost, user-acceptance and usability by using as many as possible `standard' devices and hardware as possible, with the idea that no specialist hardware is required and the user will not stand out if seen walking in public with a phone in their hand and wearing a headset.
+With the ActiVis system, we aim to tackle the issue of cost, user-acceptance and usability by using as many as possible `standard' devices and hardware as possible, with the idea that no specialist hardware is required.
+Following this design target, we base the project on a mobile device and discreet headset with the anticipation that the user will not stand out if seen walking in public with a phone in their hand and wearing a headset.
 The ActiVis system is based on a concept proposed in~\cite{bellotto2013multimodal,lock2017portable}, which uses a Google Tango device that is an Android-based device that comes equipped with an RGB-D camera to sense colour and depth and combines an inertial measurement unit (IMU) with powerful and robust landmark recognition and image processing algorithms to localise itself in real-time.
 An benefit of such a platform is its familiar, compact form-factor which will help overcome the hurdle of user-acceptance and usability.
 
@@ -106,18 +101,18 @@ Open-back headphones that allow ambient noise through were also considered, but 
 
 \subsection{Human Audio Localisation}
 
-Humans localise a sound source in 3 dimensions by considering cues recorded in one ear (monaural cues) and comparing cues derived at both ears (binaural cues)\cite{blauert1997spatial,blauert1969sound}.
+Humans localise a sound source in 3 dimensions by considering cues recorded in one ear (monaural cues) and comparing cues received at both ears (binaural cues)~\cite{blauert1997spatial,blauert1969sound}.
 The binaural cues include time differences of arrival and intensity differences that help to determine a source's location on the horizontal plane.
 Monaural cues are taken from the interaction of the sound with the human anatomy, e.g.\ head, shoulders, outer ear, before it enters the ear canal.
 The user's anatomy acts as a filter and the direction the sound wave hits the body activates different filter resonances, attenuating or accentuating different frequency bands.
-When the modified sound enters the inner ear, the human brain is able to analyse the frequency response and accurately determine the position of the sound source on the vertical plane. 
+When the modified audio signal enters the inner ear canal, the human brain is able to analyse the frequency response and accurately determine the position of the sound source on the median plane. 
 The distance to the source is simply derived as the intensity, or volume, of the source, i.e.\ a louder sound would appear closer to the user than a softer one does. 
 
-When an audio signal is transmitted via a set of speakers or headsets, it can be transformed to mimic the characteristics of a natural sound sources before it is transmitted, thereby tricking the brain into believing a sound is located at some arbitrary position.
+When an audio signal is transmitted via a set of speakers or headsets, it can be transformed to mimic the characteristics of a natural sound source before it is transmitted, tricking the brain into believing a sound is located at some arbitrary position.
 Such a transformation can be done using a head-related transfer function (HRTF) and a pair of stereo headsets or speakers.
 An HRTF is a mathematical function that simulates the response signal of a human head and is derived by capturing key characteristics that affect the monaural and binaural responses, such as the user's hearing levels and head size, etc.
-Since hearing responses can be quite unique between user's, the best results would be observed if each user had their own customised HRTF.\
-Given the complicated process involved to capture the required user characteristics, making unique HRTFs is often an untenable solution and using average values (e.g.\ head measurements, height, etc.) have shown to produce acceptable results.\todo{cite HRTF papers}
+Since hearing responses are unique amongst different users, the best results would be observed if each user had their own customised HRTF.\
+However, given the complicated process involved to capture the required user characteristics, making unique HRTFs is often an untenable solution and using average values (e.g.\ head measurements, height, etc.) have shown to produce acceptable results.\todo{cite HRTF papers}
 
 \subsection{Interface Design}
 
@@ -199,17 +194,15 @@ To minimise the speed/accuracy biases in the results, we asked the participants 
 
 The data collected during the experiment were grouped together by participant group and analysed.
 Similar to the results from~\cite{macdonald2006spatial,schonstein2008comparison}, we use the absolute mean errors for each dimension which allows us to compare our results to the aforementioned works'. 
-These results are presented in the boxplots in \crefrange{fig:sighted-err}{fig:blind-err} and summarised in \cref{tab:results}.
-
-\todo{make plot text larger}
-\todo{should we include blind results?}
+These results are presented in the boxplots in \cref{fig:results} and summarised in \cref{tab:results}.
 
 \begin{figure}[t]
   \centering
-  \subfloat[]{\label{fig:sighted-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_sight.png}}
-~
-  \subfloat[]{\label{fig:blind-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_blind.png}}
-  \caption{Boxplots of the angular errors collected during the pointing experiment for the blindfolded (left) and visually impaired (right) participants. }
+  \includegraphics[width=0.7\columnwidth]{figures/pan_tilt_err.png}
+  \caption{Boxplots of the angular errors collected during the pointing experiment. }\label{fig:results}
+  %\subfloat[]{\label{fig:sighted-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_sight.png}}
+%~
+  %\subfloat[]{\label{fig:blind-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_blind.png}}
 \end{figure}
 
 \begin{table}
@@ -219,9 +212,9 @@ These results are presented in the boxplots in \crefrange{fig:sighted-err}{fig:b
     \toprule
 	                         &           & Mean absolute error [rad] \\ \midrule
     \multirow{2}{*}{\textit{G1}} & Pan       & $ 0.25\pm0.24$ \\
-				 & Elevation & $ 0.37\pm0.27$ \\ \midrule
-    \multirow{2}{*}{\textit{G2}} & Pan       & $ 0.48\pm0.33$ \\
-				 & Elevation & $ 0.58\pm0.42$ \\
+				 & Elevation & $ 0.37\pm0.28$ \\ \midrule
+    \multirow{2}{*}{\textit{G2}} & Pan       & $ 0.38\pm0.21$ \\
+				 & Elevation & $ 0.51\pm0.32$ \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -230,16 +223,16 @@ These results are presented in the boxplots in \crefrange{fig:sighted-err}{fig:b
 
 The average pan error from group \textit{G1} falls well within the ranges observed in~\cite{macdonald2006spatial,schonstein2008comparison} of $[0.16, 0.38]$ radians and $[0.17, 0.26]$ radians respectively. 
 Indeed, the majority of samples fall within even the more conservative latter range. 
-However, the participants with vision impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.23 vs. 0.40 radians, Kruskal-Wallis test $p=0.05$). \todo{do KW test}
+However, the participants with vision impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.25 vs. 0.37 radians, Kruskal-Wallis test $p<0.001$). 
 The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend, but an investigation with a larger sample size for \textit{G2} should be considered before definitive conclusions can be made.
 
 The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous research results on human audition. \todo{cite vertical vs horizontal performance}
-The mean absolute errors of the participants are \SI{0.37}{\radian} and \SI{0.58}{\radian} for groups \textit{G1} and \textit{G2} respectively.
+The mean absolute errors of the participants are \SI{0.37}{\radian} and \SI{0.51}{\radian} for groups \textit{G1} and \textit{G2} respectively.
 As with the pan estimation errors, the participants from \textit{G1} seemed more adept at estimating the correct elevation.
-However, the difference is not as significant as for the pan, with \textit{G1} displaying a 36\% improvement over \textit{G1} in their elevation estimation vs. 42.5\% in the pan dimension. 
-Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 46\% and 16\% for each group~\cite{schonstein2008comparison}. 
+%However, the difference is not as significant as for the pan, with \textit{G1} displaying a 36\% improvement over \textit{G2} in their elevation estimation vs. 42.5\% in the pan dimension. 
+Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 46\% and 26\% for each group~\cite{schonstein2008comparison}. 
 Indeed, the performance is comparable to that of open-back and expensive in-ear headphones.
-There is a lesser improvement (13\%) with \textit{G1} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization} and a 13\% reduction in performance for group \textit{G2}.
+There is a lesser improvement (11\%) with \textit{G1} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization} and a 18\% reduction in performance for group \textit{G2}.
 However, the participants from~\cite{stanley2006lateralization} all had healthy eyesight, making the latter comparison invalid. 
 Interestingly, the elevation errors for group \textit{G2} is centered around the negative angle, indicating a possible underlying bias in the participants or the interface.
 A similar trend was observed in~\cite{stanley2006lateralization} and warrants an investigation with a larger participant pool to determine the underlying bias, if any. 
