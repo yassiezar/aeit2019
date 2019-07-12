@@ -64,7 +64,7 @@ However, since bone-conducting headphones bypass the outer ear structure, their 
   \subfloat[]{\label{fig:tango-headphone}\includegraphics[width=0.4\columnwidth]{figures/tango_headphone.png}}
 ~
   \subfloat[]{\label{fig:participant}\includegraphics[width=0.25\columnwidth]{figures/vi_participant.pdf}}
-  \caption{Pictures of the Tango device and bone-conducting headphones the system is based on (left) and both in use in an experiment (right).}\label{fig:tango-headphone}
+  \caption{Pictures of the Tango device and bone-conducting headphones the system is based on (left) and both in use in an experiment (right).}
 \end{figure}
 
 A similar approach was used in\cite{durette2008visuo}, but the study did not focus on or investigate the interface's efficacy.
@@ -83,6 +83,8 @@ Show preference studies
 Guidance instruction delivery modes using haptic, audio and vocal feedback for non-visual human-machine-interfaces (HMI) have been investigated before. 
 
 Previous work on HRTF stuff
+
+\todo{add previous work}
 
 \section{Interface Description}
 
@@ -126,7 +128,7 @@ The pan angle can be conveyed by transforming the audio signal with an HRTF, and
   \centering
   \subfloat[]{\label{fig:cam-coords}\includegraphics[width=0.3\columnwidth]{figures/camera_coordinate.pdf}}
 ~
-  \subfloat[]{\label{fig:pitch-gain}\includegraphics[clip, trim=0 0 0 40, width=0.6\columnwidth]{figures/pitch_gain_functions.png}}
+  \subfloat[]{\label{fig:pitch-gain}\includegraphics[clip, trim=0 0 0 40, width=0.6\columnwidth]{figures/pitch_gain_function.png}}
   \caption{The reference system used by the guidance interface showing the camera vector and pan and elevation angles (left) and the pitch gain function used to convey the target's elevation angle (right). }
 \end{figure}
 
@@ -186,13 +188,62 @@ The targets' positions are all set relative to the Tango device's coordinate sys
 A total of 28 targets were generated per participant. 
 
 2 groups of participants were recruited for the experiments. 
-Group \textit{G1} consisted of 10 young adults with normal eyesight that were blindfolded for the experiments, and group \textit{G2} contains 2 people with severe vision impairments. 
+Group \textit{G1} consisted of 10 young adults with normal eyesight that were blindfolded for the experiments, and group \textit{G2} contains 4 people with severe vision impairments. 
 Both groups were given some time with the system before the experiments commenced to familiarise themselves with the system, the audio signal's behaviour and the \SI{512}{\hertz} on-level tone. 
 To minimise the speed/accuracy biases in the results, we asked the participants to focus on finding the targets as well as they could without worrying about the time it took.  
 
 \subsection{Results}
 
+The data collected during the experiment were grouped together by participant group and analysed.
+Similar to the results from~\cite{macdonald2006spatial,schonstein2008comparison}, we use the absolute mean errors for each dimension which allows us to compare our results to the aforementioned works'. 
+These results are presented in the boxplots in \crefrange{fig:sighted-err}{fig:blind-err} and summarised in \cref{tab:results}.
+
+\todo{make plot text larger}
+\todo{should we include blind results?}
+
+\begin{figure}[t]
+  \centering
+  \subfloat[]{\label{fig:sighted-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_sight.png}}
+~
+  \subfloat[]{\label{fig:blind-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_blind.png}}
+  \caption{Boxplots of the angular errors collected during the pointing experiment for the blindfolded (left) and visually impaired (right) participants. }
+\end{figure}
+
+\begin{table}
+  \centering
+  \caption{}\label{tab:results}
+  \begin{tabular}{p{1cm}cc}
+    \toprule
+	                         &           & Mean absolute error [rad] \\ \midrule
+    \multirow{2}{*}{\textit{G1}} & Pan       & $ 0.25\pm0.24$ \\
+				 & Elevation & $ 0.37\pm0.27$ \\ \midrule
+    \multirow{2}{*}{\textit{G2}} & Pan       & $ 0.48\pm0.33$ \\
+				 & Elevation & $ 0.58\pm0.42$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\todo{add correlation plots}
+
+The average pan error from group \textit{G1} falls well within the ranges observed in~\cite{macdonald2006spatial,schonstein2008comparison} of $[0.16, 0.38]$ radians and $[0.17, 0.26]$ radians respectively. 
+Indeed, the majority of samples fall within even the more conservative latter range. 
+However, the participants with vision impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.23 vs. 0.40 radians, Kruskal-Wallis test $p=0.05$). \todo{do KW test}
+The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend, but an investigation with a larger sample size for \textit{G2} should be considered before definitive conclusions can be made.
+
+The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous research results on human audition. \todo{cite vertical vs horizontal performance}
+The mean absolute errors of the participants are \SI{0.37}{\radian} and \SI{0.58}{\radian} for groups \textit{G1} and \textit{G2} respectively.
+Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 46\% and 16\% for each group~\cite{schonstein2008comparison}. 
+There is a lesser improvement (13\%) with \textit{G1} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization} and a 13\% reduction in performance for group \textit{G2}.
+However, the participants from~\cite{stanley2006lateralization} all had healthy eyesight, making the latter comparison invalid. 
+Interestingly, the elevation errors for group \textit{G2} is centered around the negative angle, indicating a possible underlying bias in the participants or the interface.
+A similar trend was observed in~\cite{stanley2006lateralization} and warrants an investigation with a larger participant pool to determine the underlying bias, if any. 
+
 \section{Conclusion}
+
+In this work, we proposed an audio interface that conveys a target's pan and elevation angles through a spatialised audio tone that adjusts the tone's pitch to convey the elevation in compensate for the shortcomings of bone-conducting headsets in transmitting the elevation component of a spatialised signal.
+Results generated from a simple pointing experiment are encouraging and improves performance over purely spatialised signals transmitted via bone-conduction.
+Future work will involve a more in-depth investigation with a larger participant pool to determine the factors that affect performance and enable a more detailed statistical analysis.
+For example, will adjusting the elevation function's gradient make it easier to guess the target's elevation and what is the performance difference between participants with limited and healthy eyesight?  
 
 %\section{Previous Work}\label{sec:lit-review}
 
@@ -215,123 +266,6 @@ To minimise the speed/accuracy biases in the results, we asked the participants 
 %In these works, a sound was played through a set of headphones and the source spatialised with a head-related transfer function (HRTF), tricking the listener into thinking the sound source was located at some arbitrary 3D location.
 %There are also experimental results about how well users can find targets presented with spatial sound in the tilt and panning dimensions with normal headphones~\cite{katz2011spatial,zwiers2001spatial}, as well as work that has shown similar levels of localisation performance between normal and bone-conducting headphones in the pan dimension~\cite{macdonald2006spatial}.
 %However, to our knowledge no extensive work or experiments have been done to determine how well users respond to tilt adjustment instructions using a tone with \textit{varying pitch}, in particular when using bone-conducting headphones, and how changes to this tone's behaviour affects performance. 
-
-%\section{Results and Discussion}\label{sec:results}
-
-%The results for the participants are given by the 2D histograms in \cref{fig:err-results}, where the pan error is on the abscissa and the tilt error on the ordinates.
-%A set of box-plots of the angular errors' median and standard deviations are given in \cref{fig:err-boxplot} for the $m_l, m_m$ and $m_h$ settings. 
-%The results for $G1$ are summarised in \cref{tab:results}, while the results for $G2$ are given in \cref{tab:vi-results}.
-
-%\begin{figure}
-  %\centering
-  %\subfloat[Results for the $m_l$ setting.]{\label{fig:err-results-lo}\includegraphics[clip, trim=450 0 450 110, width=0.8\columnwidth]{figures/err_lo.png}}
-
-  %\subfloat[Results for the $m_m$ setting.]{\label{fig:err-results-med}\includegraphics[clip, trim=450 0 450 110, width=0.8\columnwidth]{figures/err_med.png}}
-
-  %\subfloat[Results for the $m_h$ setting.]{\label{fig:err-results-hi}\includegraphics[clip, trim=450 0 450 110, width=0.8\columnwidth]{figures/err_hi.png}}
-
-  %\caption{Angular error data for the 3 gradient settings. }\label{fig:err-results}
-%\end{figure}
-
-%\begin{figure}
-  %\centering
-  %\subfloat[The medians. ]{\label{fig:err-boxplot-median}\includegraphics[clip, trim=20 -70 100 100, width=1.0\columnwidth]{figures/err_boxplot_medians.png}}
-
-  %\subfloat[The standard deviations. ]{\label{fig:err-boxplot-std}\includegraphics[clip, trim=20 -70 100 100, width=1.0\columnwidth]{figures/err_boxplot_std.png}}
-
-  %\caption{Boxplots for the error medians and standard deviations. }\label{fig:err-boxplot}
-%\end{figure}
-
-%\begin{table}
-  %\centering
-  %\caption{A table of the pan and tilt angular error results collected from $G1$. The results include the absolute average error ($\mu_{abs}$), average error ($\mu$) and standard deviations ($\sigma$) given in radians, as well as the Spearman ($R$) correlation scores.}\label{tab:results}
-  %\begin{tabular}{llcccc}
-    %\toprule
-    %\multicolumn{2}{c}{} & $\mu_{abs}$ & $\mu$ & $\sigma$ & $R$ \\\midrule
-	 %& $m_l$ & 0.23 & -0.02 & 0.32 & 0.75 \\%\cmidrule{2-6}
-    %Pan  & $m_m$ & 0.21 & -0.01 & 0.28 & 0.77 \\%\cmidrule{2-6}
-	 %& $m_h$ & 0.22 & -0.05 & 0.31 & 0.75 \\\midrule
-	 %& $m_l$ & 0.40 & -0.14 & 0.46 & 0.38 \\%\cmidrule{2-6}
-    %Tilt & $m_m$ & 0.32 & -0.12 & 0.36 & 0.48 \\%\cmidrule{2-6}
-	 %& $m_h$ & 0.34 & -0.16 & 0.39 & 0.55 \\
-    %\bottomrule
-  %\end{tabular}
-%\end{table}
-
-%\begin{table}
-  %\centering
-  %\caption{A table summarising the target search results of the participants in $G2$ (P1 - P3). The results include the average error ($\mu$) and standard deviation ($\sigma$), given in radians in the pan and tilt dimensions.}\label{tab:vi-results}
-  %\begin{tabular}{llcccccc}
-    %\toprule
-    %\multicolumn{2}{c}{} & \multicolumn{2}{c}{$m_l$} & \multicolumn{2}{c}{$m_m$} & \multicolumn{2}{c}{$m_h$} \\
-    %\multicolumn{2}{c}{} & $\mu_l$ & $\sigma_l$ & $\mu_m$ & $\sigma_m$ & $\mu_h$ & $\sigma_h$ \\\midrule
-	 %& P1 &  0.25 & 0.44 &  0.21 & 0.45 &  0.29 & 0.40 \\% \cline{2-8}
-    %Pan  & P2 &  0.18 & 0.85 &  0.05 & 0.49 & -0.08 & 0.32 \\% \cline{2-8}
-	 %& P3 & -0.10 & 0.67 & -0.08 & 0.61 & -0.08 & 0.50 \\ \midrule
-	 %& P1 & -0.17 & 0.21 & -0.10 & 0.2  & -0.25 & 0.21 \\% \cline{2-8}
-    %Tilt & P2 & -0.87 & 0.26 & -0.05 & 0.21 & -0.15 & 0.18 \\% \cline{2-8}
-	 %& P3 & -0.57 & 0.31 & -0.57 & 0.45 & -0.38 & 0.39 \\% \hline
-    %\bottomrule
-  %\end{tabular}
-%\end{table}
-
-%\subsection{Pan Results}
-
-%\cref{fig:err-results} and the median and mean points from the boxplots in \cref{fig:err-boxplot} show that the data in the pan dimension are approximately normally distributed around zero.
-%However, a Shapiro-Wilkes test score below the critical threshold do not give enough confidence to consider the data as normally distributed and we therefore analyse the data through non-parametric techniques. 
-
-%For the data collected from $G1$, there is a strong linear correlation between the participants' guesses and the targets' true pan angles, shown by the high Spearman correlation scores of approximately 0.75 ($p < 0.01$) for all of the datasets, with the $m_m$ setting displaying the marginally best result of 0.77.
-%The 3 settings have similar average errors and standard deviations, with the $m_m$ setting again producing the marginally best results with the smallest average error and standard deviation.
-%However, the differences are relatively small (approximately 6\%) and are not significant enough (Friedman test $p = 0.92$) to conclude that the pitch gradient has an effect on the target acquisition accuracy performance in the pan dimension. 
-
-%The data collected from $G2$ follow a similar trend to $G1$: the error in the pan dimension is centred around \SI{0}{\radian} with similar standard deviations across all 3 settings.
-%Unfortunately, not enough samples could be collected to draw any final conclusions.
-%However, these results are in line with results from previous work~\cite{zwiers2001spatial}, indicating that the groups with partial and normal eyesight respond with similar levels of accuracy to spatialised sound when presented with simple tasks. 
-
-%These results show that both groups managed to find the targets with reasonable level of accuracy and that the pan error is robust to variations in the pitch's rate of change; a useful result in support of the effectiveness of this audio interface.
-
-%\subsection{Tilt Results}\label{sec:tilt-results}
-
-%The data within the tilt dimension were also found to be non-normal following scores below the critical threshold from the Shapiro-Wilkes test.
-%The Spearman test for the data reveals a reasonably significant correlation between the participants' guesses and the actual locations of the targets, with correlation scores of approximately 0.38 for $m_l$, 0.48 for $m_m$ and the $m_h$ gradient giving the strongest correlation score with 0.55 ($p < 0.01$ for all 3 settings).
-%This indicates that the participants generally interpret the cues from the varying the pitch correctly and are mostly successful at pointing the camera in the correct tilt angle.
-
-%The average errors of the datasets are relatively close to one another, with the $m_l$ setting producing the largest absolute error and standard deviation at \SI{0.40}{\radian} and \SI{0.46}{\radian} respectively.
-%The $m_m$ and $m_h$ settings have similar absolute errors of \SI{0.32}{\radian} and \SI{0.34}{\radian} respectively.
-%This is in line with the correlation scores, with $m_l$ giving the worst result and $m_h$ giving the best results overall, with highest correlation score and relatively low absolute angular errors and standard deviation, marginally beating $m_m$. 
-
-%Since the data are not normally spread and there is significant levels of noise within the data which may contaminate the mean values, we use the medians to analyse the datasets.
-%For this, the Friedman test is used on the participants' error medians and it was found that there is a significant difference between the 3 settings' datasets ($p < 0.01$).
-%A post-hoc analysis with a Wilcoxon signed rank test and a critical threshold with a Bonferroni correction applied ($\alpha=0.016=\frac{0.05}{3}$) shows that both the $m_m$ and $m_h$ settings are significantly different from the $m_l$ setting ($p=0.0014<\alpha$ for both settings), but that the $m_m$ and $m_h$ settings do not produce significantly different results from one another ($p=0.42>\alpha$).
-%This indicates there is an inflection point where increasing $m$ produces diminishing returns and that we cannot conclude that the $m_h$ setting is better than the $m_m$ gradient.
-%However, both settings conclusively produce more accurate results than the $m_l$ setting.
-
-%From \cref{fig:err-boxplot-median} it can be seen that the median data show a significant skewing to the negative side, indicating a potential bias amongst the experiment's participant-base that must be taken into account.
-%From the results, it is not completely clear what causes this negative bias in the pitch dimension.
-%However, a possible explanation is that the floor introduces a position constraint within a user's mind, since the target cannot appear below the ground.
-%It can potentially appear above the user's head though, giving variable upper an lower limits that depend on the user's height and individual perception.
-%Future improvements to our audio interface should consider a non-linear increase in pitch as a function of tilt angle instead of the linear one we used in this work to remedy this bias.
-
-%The results collected from $G1$ and $G2$ show that a varying pitch tone can convey the tilt angle of a target to a human using bone-conducting headphones with accuracy levels similar to that in literature~\cite{bujacz2011sonification,katz2011spatial,zotkin2004rendering}.
-%They also highlight a clear and significant difference between the 3 different pitch gain gradients, with the $m_l$ setting giving the lowest acquisition accuracy, while $m_m$ and $m_h$ give similar accuracy levels closest to the target's true tilt. 
-
-%\subsection{Participants with Visual Impairment's Feedback}
-
-%After the experiments with the participants with visual impairments in $G2$ were completed, we took the opportunity to collect their feedback on the audio interface's current implementation and gather suggestions for improvements for future iterations.
-%When asked about their opinions on current assistive systems available on the market, the general consensus was that these systems are typically prohibitively expensive, too complex and cumbersome to be useful for everyday use.
-%Indeed, they seemed quite enthusiastic about a guidance system that they can use on a mobile phone.
-
-%They were generally satisfied with the guidance interface in its current form and had little problem learning how to use it.
-%However, they, along with the participants in $G1$, reported auditory fatigue caused by long-term exposure to the sinusoidal audio tone.
-%We were aware of this issue before the experiments were conducted and have considered replacing the simple sine wave tone with more natural and pleasant sounds.
-%For example, musical instruments can be used to play different notes and scales to indicate different elevation angles~\cite{brewster1998using}.
-%Furthermore, they suggested adding some voice component or tone prompt to confirm when they are on target, inform them of other important events or happenings or simply to intermittently assure them that the system is still active.
-%The former two suggestions were intentionally ignored in order to purely evaluate how accurately the audio tone can guide a user to the target.
-%Going forward, however, these suggestions will be helpful for a potential commercial release version of the guidance system to make the guidance instructions clearer and to intermittently reassure users that they are still on the right course, for example.
-
-%On the hardware, only one participant had reservations regarding the choice of bone-conducting headphones, citing cost concerns. 
-%However, he indicated that he could justify purchasing a set of bone-conducting headphones if he were to use them throughout the day to avoid cutting off environmental sounds.
-%None of the participants had any technical issues using the headphones or mobile device and were able to properly use and interpret the guidance instructions.
 
 %\section{Conclusion and Future Work}\label{sec:conclusion}
 
