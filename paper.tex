@@ -43,6 +43,7 @@ Nicola Bellotto\inst{1}}
 
 \section{Introduction}
 
+\todo{review title to make focus more on bone conduction and its viability}
 In recent years, governments have spearheaded numerous initiatives to support people with disabilities and enable them to play a more active role in modern society.
 The UK's Royal National Institute of Blind People (RNIB) for example has prioritised improving access to everyday services and products, such as public transport and mobile apps~\cite{rnib2016uk}.
 Improvements in modern computing have made it possible for new and innovative solutions to these problems to come to the fore.
@@ -73,9 +74,11 @@ Furthermore, we demonstrate our approach's effectiveness through a simple experi
 %The contribution of this work is an effective approach to addressing the shortcomings of playing spatialised sound through bone-conducting headphones, as well as initial experiments demonstrating its effectivenesst
 %Furthermore, we demonstrate that such an interface is effective at communicating 
 
-The rest of the paper is \todo{lay out rest of paper}
+The rest of the paper starts off by discussing previous relevant works and research in \cref{sec:prev-work}, followed by a discussion on the design and implementation of our interface in \cref{sec:interface-design}.
+This is followed by a description of the experiments that were conducted and a discussion of their results in \cref{sec:experiment-and-results}.
+Finally, the work is concluded with a summary and a short discussion on future research prospects in \cref{sec:conclusion}.
 
-\section{Previous Work}
+\section{Previous Work}\label{sec:prev-work}
 
 Work on guiding/directing people (vibration, audio, voice)
 Show preference studies
@@ -86,7 +89,7 @@ Previous work on HRTF stuff
 
 \todo{add previous work}
 
-\section{Interface Description}
+\section{Interface Description}\label{sec:interface-design}
 
 \subsection{Hardware Selection}
 
@@ -174,7 +177,7 @@ The WiFi recording module is constantly monitoring the different parameter value
   \caption{A diagram of the individual system components and their communication pipelines. $F$ indicates a feedback signal and $P$ a pose signal. }\label{fig:pipeline}
 \end{figure}
 
-\section{Experiment and Results}
+\section{Experiment and Results}\label{sec:experiment-and-results}
 
 To test the interface's effectiveness at directing a user towards a target area, a set of experiments were conducted with a simple pointing task. 
 This pointing task is set up to capture the difference between the targets' actual position and the positions the participants' perceived them to be.
@@ -232,18 +235,22 @@ The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend
 
 The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous research results on human audition. \todo{cite vertical vs horizontal performance}
 The mean absolute errors of the participants are \SI{0.37}{\radian} and \SI{0.58}{\radian} for groups \textit{G1} and \textit{G2} respectively.
+As with the pan estimation errors, the participants from \textit{G1} seemed more adept at estimating the correct elevation.
+However, the difference is not as significant as for the pan, with \textit{G1} displaying a 36\% improvement over \textit{G1} in their elevation estimation vs. 42.5\% in the pan dimension. 
 Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 46\% and 16\% for each group~\cite{schonstein2008comparison}. 
+Indeed, the performance is comparable to that of open-back and expensive in-ear headphones.
 There is a lesser improvement (13\%) with \textit{G1} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization} and a 13\% reduction in performance for group \textit{G2}.
 However, the participants from~\cite{stanley2006lateralization} all had healthy eyesight, making the latter comparison invalid. 
 Interestingly, the elevation errors for group \textit{G2} is centered around the negative angle, indicating a possible underlying bias in the participants or the interface.
 A similar trend was observed in~\cite{stanley2006lateralization} and warrants an investigation with a larger participant pool to determine the underlying bias, if any. 
 
-\section{Conclusion}
+\section{Conclusion}\label{sec:conclusion}
 
 In this work, we proposed an audio interface that conveys a target's pan and elevation angles through a spatialised audio tone that adjusts the tone's pitch to convey the elevation in compensate for the shortcomings of bone-conducting headsets in transmitting the elevation component of a spatialised signal.
 Results generated from a simple pointing experiment are encouraging and improves performance over purely spatialised signals transmitted via bone-conduction.
 Future work will involve a more in-depth investigation with a larger participant pool to determine the factors that affect performance and enable a more detailed statistical analysis.
 For example, will adjusting the elevation function's gradient make it easier to guess the target's elevation and what is the performance difference between participants with limited and healthy eyesight?  
+Furthermore, experiments with a large group of people with vision impairments will provide an opportunity to gauge their opinion on the interface and identify possible avenues of improvements to user friendliness.
 
 %\section{Previous Work}\label{sec:lit-review}
 
@@ -266,25 +273,6 @@ For example, will adjusting the elevation function's gradient make it easier to 
 %In these works, a sound was played through a set of headphones and the source spatialised with a head-related transfer function (HRTF), tricking the listener into thinking the sound source was located at some arbitrary 3D location.
 %There are also experimental results about how well users can find targets presented with spatial sound in the tilt and panning dimensions with normal headphones~\cite{katz2011spatial,zwiers2001spatial}, as well as work that has shown similar levels of localisation performance between normal and bone-conducting headphones in the pan dimension~\cite{macdonald2006spatial}.
 %However, to our knowledge no extensive work or experiments have been done to determine how well users respond to tilt adjustment instructions using a tone with \textit{varying pitch}, in particular when using bone-conducting headphones, and how changes to this tone's behaviour affects performance. 
-
-%\section{Conclusion and Future Work}\label{sec:conclusion}
-
-%In this work, we present an audio-based guidance interface that uses a spatialised audio tone with varying pitch to direct a user with visual impairments to point a camera toward a target. 
-%We also present and discuss a set of experiments that were conducted to determine the interface's effectiveness and performance, as well as some subjective feedback that was collected from legally blind participants. 
-
-%Using a set of bone-conducting headphones, we found that a spatialised audio tone with a varying pitch can successfully convey the pan and tilt angles of a target.
-%The angular errors made by the participants are in line with those from previous research using similar audio guidance instructions.
-%We also found that varying the pitch's rate of change influences the accuracy of the system in the tilt dimension without affecting the performance in the pan dimension.
-%The steeper, $m_h$ and $m_m$ pitch gradients were found to produce the best accuracy results in general.
-
-%Feedback from the participants with visual impairments was mostly positive and they agreed with the choice of bone-conduction headphones that do not inhibit normal hearing.
-%However, they noted that the sine wave audio signal induced audio fatigue after extended exposure, something noted by the other participants as well, and suggested that more full-bodied, natural sounds be used instead.
-%Using vocal feedback in conjunction with the current audio signal was also suggested. 
-
-%These results are more interesting from a design point of view than an end-user's. 
-%Indeed, we have shown that this audio guidance interface is effective at directing an average person, but more data are needed with the intended audience in order to decisively conclude that this interface will be effective in an indoor guidance system for people with vision impairments. 
-%Nevertheless, these data are a good indication of what to expect when we evaluate this audio interface with a greater number of people with limited vision.
-%Once we have determined that the intended audience can effectively use this type of guidance instruction, we can start adding more user-oriented features (e.g.\ voice prompts, more pleasant tones, etc.) and integrate them into our guidance system prototype. 
 
 \bibliographystyle{splncs04}
 \bibliography{bib}
