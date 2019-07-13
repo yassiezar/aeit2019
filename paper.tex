@@ -74,14 +74,21 @@ Finally, the work is concluded with a summary and a short discussion on future r
 
 \section{Previous Work}\label{sec:prev-work}
 
-Work on guiding/directing people (vibration, audio, voice)
-Show preference studies
+Multiple mobile navigation and travel aids have been devised throughout the years, some as part of a commercial undertaking and many as part of academic research.
+The majority of these systems rely on one or a combination of vocal\todo{cite voice appers}, audio\todo{cite audio papers} and haptic\todo{cite haptic} feedback media to communicate guidance instructions to the user, each with their own sets of features and limitations.
+In general, participants with vision impairments report that they prefer haptic and vocal feedback out of the 3 options. 
+However, haptic feedback systems require significant additional hardware to transmit the guidance instructions.
+Furthermore, haptic and vocal feedback can become a cognitive burden, particularly where high resolution guidance, which can exceed the bandwidth of these particular senses, is required.
+Indeed, participants report that they would prefer control over the vocal feedback channel and trigger guidance instructions, instead of being given constant guidance instructions. 
+Simple audio tones do not suffer from these bandwidth and hardware limitations as badly, but it does have the potential to fatigue the user's senses if the tone is too harsh, psychologically speaking.
 
-Guidance instruction delivery modes using haptic, audio and vocal feedback for non-visual human-machine-interfaces (HMI) have been investigated before. 
-
-Previous work on HRTF stuff
-
-\todo{add previous work}
+Researchers have investigated using audio signals that are spatialised with an HRTF, which tricks the brain into thinking that a sound source is located at some arbitrary 3D position~\cite{geronazzo2016interactive,wilson2007swan,katz2010navig,blum2013spatialized}.
+The authors generally report favourable results for this guidance approach when used with standard over-ear headphones or speakers. 
+However, other authors have found that the choice of audio transmission medium can have a significant effect on performance.
+Cheaper headphones and bone-conduction headphones generally report unfavourable results when compared to over-ear or more expensive alternatives~\cite{schonstein2008comparison,macdonald2006spatial,stanley2006lateralization}. 
+This seems to be limited to the elevation dimension, however, and can be improved with HRTFs adjusted for the bone-conduction pathway~\cite{stanley2006lateralization}.
+In~\cite{durette2008visuo}, they transmit a target's elevation angle by adjusting the signal's pitch and report favourable results. 
+However, these studies focussed on their system's total effectiveness, rather than the effectiveness of their pitch adjustment mechanism and in this work we endavoiour to investigate this more closeley. 
 
 \section{Interface Description}\label{sec:interface-design}
 
@@ -174,6 +181,8 @@ The WiFi recording module is constantly monitoring the different parameter value
 
 \section{Experiment and Results}\label{sec:experiment-and-results}
 
+\subsection{Procedure}
+
 To test the interface's effectiveness at directing a user towards a target area, a set of experiments were conducted with a simple pointing task. 
 This pointing task is set up to capture the difference between the targets' actual position and the positions the participants' perceived them to be.
 
@@ -194,12 +203,12 @@ To minimise the speed/accuracy biases in the results, we asked the participants 
 
 The data collected during the experiment were grouped together by participant group and analysed.
 Similar to the results from~\cite{macdonald2006spatial,schonstein2008comparison}, we use the absolute mean errors for each dimension which allows us to compare our results to the aforementioned works'. 
-These results are presented in the boxplots in \cref{fig:results} and summarised in \cref{tab:results}.
+These results are presented in the boxplots in \cref{fig:err-results} and summarised in \cref{tab:results}.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.7\columnwidth]{figures/pan_tilt_err.png}
-  \caption{Boxplots of the angular errors collected during the pointing experiment. }\label{fig:results}
+  \caption{Boxplots of the angular errors collected during the pointing experiment. }\label{fig:err-results}
   %\subfloat[]{\label{fig:sighted-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_sight.png}}
 %~
   %\subfloat[]{\label{fig:blind-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_blind.png}}
@@ -207,26 +216,24 @@ These results are presented in the boxplots in \cref{fig:results} and summarised
 
 \begin{table}
   \centering
-  \caption{}\label{tab:results}
-  \begin{tabular}{p{1cm}cc}
+  \caption{A summary of the results collected from the experiment. }\label{tab:results}
+  \begin{tabular}{p{1cm}p{2cm}p{4cm}c}
     \toprule
-	                         &           & Mean absolute error [rad] \\ \midrule
-    \multirow{2}{*}{\textit{G1}} & Pan       & $ 0.25\pm0.24$ \\
-				 & Elevation & $ 0.37\pm0.28$ \\ \midrule
-    \multirow{2}{*}{\textit{G2}} & Pan       & $ 0.38\pm0.21$ \\
-				 & Elevation & $ 0.51\pm0.32$ \\
+    &           & Mean absolute error [rad]  & Pearson Correlation score \\ \midrule
+    \multirow{2}{*}{\textit{G1}} & Pan       & $0.25\pm0.24$ & $0.83\;(p<0.001)$ \\
+				 & Elevation & $0.37\pm0.28$ & $0.44\;(p<0.001)$ \\ \midrule
+    \multirow{2}{*}{\textit{G2}} & Pan       & $0.38\pm0.21$ & $0.35\;(p<0.001)$ \\
+				 & Elevation & $0.51\pm0.32$ & $0.40\;(p=0.001)$ \\
     \bottomrule
   \end{tabular}
 \end{table}
-
-\todo{add correlation plots}
 
 The average pan error from group \textit{G1} falls well within the ranges observed in~\cite{macdonald2006spatial,schonstein2008comparison} of $[0.16, 0.38]$ radians and $[0.17, 0.26]$ radians respectively. 
 Indeed, the majority of samples fall within even the more conservative latter range. 
 However, the participants with vision impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.25 vs. 0.37 radians, Kruskal-Wallis test $p<0.001$). 
 The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend, but an investigation with a larger sample size for \textit{G2} should be considered before definitive conclusions can be made.
 
-The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous research results on human audition. \todo{cite vertical vs horizontal performance}
+The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous research results on human audition~\cite{barfield1997visual}. 
 The mean absolute errors of the participants are \SI{0.37}{\radian} and \SI{0.51}{\radian} for groups \textit{G1} and \textit{G2} respectively.
 As with the pan estimation errors, the participants from \textit{G1} seemed more adept at estimating the correct elevation.
 %However, the difference is not as significant as for the pan, with \textit{G1} displaying a 36\% improvement over \textit{G2} in their elevation estimation vs. 42.5\% in the pan dimension. 
@@ -237,6 +244,19 @@ However, the participants from~\cite{stanley2006lateralization} all had healthy 
 Interestingly, the elevation errors for group \textit{G2} is centered around the negative angle, indicating a possible underlying bias in the participants or the interface.
 A similar trend was observed in~\cite{stanley2006lateralization} and warrants an investigation with a larger participant pool to determine the underlying bias, if any. 
 
+The error data was used to generate scatter plots that show the correlation between the position that the guidance system presented the participants and the position the participants thought the targets were.
+These plots are given in \cref{fig:correlation-results} and show a reasonably positive correlation between the guidance targets and the selected targets, which indicates that the participants correctly interpreted the interface's output for the most part. 
+The Pearson correlation scores for each dataset, listed in \cref{tab:results}, confirm this.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=1.0\columnwidth]{figures/correlation.png}
+  \caption{Boxplots of the angular errors collected during the pointing experiment. }\label{fig:correlation-results}
+  %\subfloat[]{\label{fig:sighted-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_sight.png}}
+%~
+  %\subfloat[]{\label{fig:blind-err}\includegraphics[width=0.5\columnwidth]{figures/pan_tilt_err_blind.png}}
+\end{figure}
+
 \section{Conclusion}\label{sec:conclusion}
 
 In this work, we proposed an audio interface that conveys a target's pan and elevation angles through a spatialised audio tone that adjusts the tone's pitch to convey the elevation in compensate for the shortcomings of bone-conducting headsets in transmitting the elevation component of a spatialised signal.
@@ -244,28 +264,6 @@ Results generated from a simple pointing experiment are encouraging and improves
 Future work will involve a more in-depth investigation with a larger participant pool to determine the factors that affect performance and enable a more detailed statistical analysis.
 For example, will adjusting the elevation function's gradient make it easier to guess the target's elevation and what is the performance difference between participants with limited and healthy eyesight?  
 Furthermore, experiments with a large group of people with vision impairments will provide an opportunity to gauge their opinion on the interface and identify possible avenues of improvements to user friendliness.
-
-%\section{Previous Work}\label{sec:lit-review}
-
-%Earlier attempts at improving a person with visual impairment's navigation experience involved outfitting the commonly-used walking cane with remote detection systems, such as sonar, radar and RFID tags, to transform a cane into an early-warning system~\cite{ulrich1997,marion2008batcane,faria2010electronic,willis2005}.
-%Bluetooth tags and a smartphone can be used in a similar manner~\cite{sato2017navcog3}.
-%However, the expense and effort of maintaining such tags make them less attractive for wide-scale adoption.
-%Computer vision-based systems provide a good compromise between usability, cost and accuracy.
-%One solution is to use RGB-D depth sensing cameras, which are becoming increasingly accurate and cost-effective, to build a 3D image map of the environment, and guiding a user through it~\cite{lee2015,rodriguez2012obstacle}.
-%Alternatively, object recognition techniques can be used to detect various objects and landmarks, such as doors, staircases, etc., and communicate their relative location to the user~\cite{schauerte2012assistive,tian2013b,fiannaca2014headlock}, or use audio instructions to guide a user to fully capture an object of interest~\cite{vazquez2012helping}. 
-
-%An important feature of user-centric systems is a human-machine interface (HMI) that enables effective two-way communication between the system and the user.
-%Surveys found that people with visual impairments prefer receiving instructions in the form of speech and haptic feedback cues~\cite{khoo2016multimodal,ross2000wearable,vazquez2012helping}.
-%However, haptic feedback modes typically have a lower bandwidth when compared to audio feedback and also require the user to wear a special device in order to transmit the signals effectively.
-%Work has also been done in translating a visual scene into non-visual formats, with so-called sensory substitution systems (e.g. `The Voice'~\cite{meijer2010}) and virtual audio reality (VAR) systems~\cite{frauenberger2003} reporting favourable results.
-%However, The Voice has a very steep learning curve that has proven to be a significant barrier to entry and with VAR systems, it is not clear how unknown environments, where markers have not yet been encoded, would be handled and described to the user. 
-
-%Previous experiments have determined that people are able to find the location of a stationary sound source with an error of $\pm$\SI{35}{\degree}, in both the pan and tilt dimensions~\cite{zwiers2001spatial}, for both early-blind and normally-sighted people.
-%However, in~\cite{lewald2013exceptional,lessard1998early} it was found that the blind have a clear advantage in localisation accuracy over sighted people when presented with more complex tasks, such as targets in motion and narrow-band stimuli, with~\cite{lewald2013exceptional} reporting an average absolute localisation error of around \SI{10}{\degree} in the pan and tilt dimensions.
-%Researchers have used simulated spatialised audio to inform the user of the sound source's direction~\cite{holland2002audiogps,kammoun2012navigation,rebillat2009smart,menelas2010audio,wilson2007swan,zotkin2004rendering}.
-%In these works, a sound was played through a set of headphones and the source spatialised with a head-related transfer function (HRTF), tricking the listener into thinking the sound source was located at some arbitrary 3D location.
-%There are also experimental results about how well users can find targets presented with spatial sound in the tilt and panning dimensions with normal headphones~\cite{katz2011spatial,zwiers2001spatial}, as well as work that has shown similar levels of localisation performance between normal and bone-conducting headphones in the pan dimension~\cite{macdonald2006spatial}.
-%However, to our knowledge no extensive work or experiments have been done to determine how well users respond to tilt adjustment instructions using a tone with \textit{varying pitch}, in particular when using bone-conducting headphones, and how changes to this tone's behaviour affects performance. 
 
 \bibliographystyle{splncs04}
 \bibliography{bib}
