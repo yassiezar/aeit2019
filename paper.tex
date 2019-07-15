@@ -60,7 +60,7 @@ Furthermore, a set of bone-conduction headphones (pictured in \cref{fig:tango-he
   \subfloat[]{\label{fig:tango-headphone}\includegraphics[width=0.4\columnwidth]{figures/tango_headphone.png}}
 ~
   \subfloat[]{\label{fig:participant}\includegraphics[width=0.2\columnwidth]{figures/vi_participant.pdf}}
-  \caption{Pictures of the latest Tango mobile phone model (left), the Tango tablet and bone-conducting headphones that were used in this work (centre) and both in use in an experiment (right).}
+  \caption{Pictures of the latest Tango mobile phone (left), the former Tango tablet and the bone-conducting headphones used in this work (centre), and a participant with visual impairments during an experiment (right).}
 \end{figure}
 
 Humans are able to determine the 3D position of a sound source and by exploiting this natural ability, the real-time guidance instructions can easily be interpreted without posing a significant cognitive load.
@@ -79,7 +79,7 @@ Finally, the paper concludes with a summary and a short discussion on future res
 
 Multiple mobile navigation and travel aids have been devised throughout the years, some as part of a commercial undertaking and many as part of academic research.
 The majority of these systems rely on one or a combination of vocal~\cite{mocanu2016when,chessa2016integrated,kanwal2015navigation}, audio~\cite{schwarze2015intuitive,rodriguez2012obstacle,katz2010navig} and haptic~\cite{rivera-rubio2015assistive,lee2015rgb,xiao2015assistive} feedback media to communicate guidance instructions to the user, each with their own sets of features and limitations.
-In general, participants with vision impairments report that they prefer haptic and vocal feedback out of the three options~\cite{arditi2013user}.
+In general, participants with visual impairments report that they prefer haptic and vocal feedback out of the three options~\cite{arditi2013user}.
 However, haptic feedback systems typically have extra hardware requirements to transmit the guidance instructions.
 Furthermore, haptic and vocal feedback can become a cognitive burden, particularly where high resolution guidance, which can exceed the bandwidth of these particular senses, is required.
 Indeed, participants report that they would prefer control over the vocal feedback channel and trigger guidance instructions, instead of being given constant guidance instructions~\cite{arditi2013user}.
@@ -182,23 +182,23 @@ A WiFi recording module is constantly monitoring the different values of the dev
 
 \subsection{Procedure}
 
-To test the interface's effectiveness at directing a user towards a target area, a set of experiments were conducted with a pointing task that is set up to capture the difference between the targets' actual position and the positions the participants' perceived them to be.
-The participants are given a Tango tablet device running an app written for the experiment that generates a set of virtual targets and presents them to each participants one at a time. 
-The targets are generated at a constant \SI{2}{\meter} from the participant and their the pan and elevation angles are uniformly generated across 4 quadrants to avoid clustering.
+To test the interface's effectiveness at guiding the user in a pointing task, a set of experiments were conducted to capture the difference between the targets' actual direction and the directions the participants' perceived them to be.
+The participants are given a Tango device running an app written for the experiment that generates a set of virtual targets and presents them to each participants, one at a time. 
+The targets are generated at a constant distance from the participant and their pan and elevation angles are uniformly generated across the four quadrants of the pan-elevation plane to avoid clustering.
 Each target's angular position is communicated to the participant through the audio interface, the output of which is adjusted in real-time as the participant points the device around. 
-When a participant was confident that they were on-target, i.e.\ hearing the audio front-on at \SI{512}{\hertz}, they tapped the screen, marking the location and generating the next target.
-The targets' positions are all set relative to the Tango device's coordinate system which is tracked using the Tango hardware and localisation API.\
+When a participant was confident that the device was on-target, i.e.~hearing the audio front-on at \SI{512}{\hertz}, they tapped the screen, marking the location and generating the next target.
+The targets' positions are all set relative to the device's coordinate system, which is tracked using the Tango hardware and localisation API.\
 A total of 28 targets were generated per participant. 
 
-2 groups of participants were recruited for the experiments. 
-Group \textit{G1} consisted of 10 young adults with normal eyesight that were blindfolded for the experiments, and group \textit{G2} contains 4 people with severe vision impairments. 
-Both groups were given some time with the system before the experiments commenced to familiarise themselves with the system, the audio signal's behaviour and the \SI{512}{\hertz} on-level tone. 
-To minimise the speed/accuracy biases in the results, we asked the participants to focus on finding the targets as well as they could without worrying about the time it took.  
+Two groups of participants were recruited for the experiments. 
+Group \textit{G1} consisted of 10 young adults with normal eyesight who were blindfolded for the experiments, and group \textit{G2} contained 4 people with severe visual impairments. 
+Both groups were given some time before the experiments to familiarise with the system, the audio signal's behaviour and the \SI{512}{\hertz} on-level tone. 
+To minimise the speed/accuracy biases in the results, we asked the participants to focus on finding the targets, without worrying about the time it took. 
 
 \subsection{Results}
 
-The data collected during the experiment were grouped together by participant group and analysed.
-Similar to the results from~\cite{macdonald2006spatial,schonstein2008comparison}, we use the absolute mean errors for each dimension which allows us to compare our results to the aforementioned works'. 
+The data collected during the experiment were clustered together by participant groups and analysed.
+Similar to the results from~\cite{macdonald2006spatial,schonstein2008comparison}, we use the absolute mean errors for each dimension, which allows us to compare our results to the aforementioned works'. 
 These results are presented in the boxplots in \cref{fig:err-results-fig} and summarised in \cref{tab:results}.
 
 \begin{figure}
@@ -224,23 +224,23 @@ These results are presented in the boxplots in \cref{fig:err-results-fig} and su
 \end{table}
 
 The average pan error from group \textit{G1} falls well within the ranges observed in~\cite{macdonald2006spatial,schonstein2008comparison} of $[0.16, 0.38]$ radians and $[0.17, 0.26]$ radians respectively. 
-Indeed, the majority of samples fall within even the more conservative latter range. 
-However, the participants with vision impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.23 vs. 0.45 radians, Kruskal-Wallis test $p<0.001$). 
-The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend, but an investigation with a larger sample size for \textit{G2} should be considered before definitive conclusions can be made.
+Indeed, the majority of samples fall even within the latter, more conservative range. 
+However, the participants with visual impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.23 vs. 0.45 radians, Kruskal-Wallis test $p<0.001$). 
+The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend, although an investigation with a larger sample size for \textit{G2} should be considered before definitive conclusions can be made.
 
-The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous research results on human audition~\cite{barfield1997visual}. 
-The mean absolute errors of the participants are \SI{0.25}{\radian} and \SI{0.36}{\radian} for groups \textit{G1} and \textit{G2} respectively.
+The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous experimental results on human audition~\cite{barfield1997visual}. 
+The mean absolute errors of the participants are \SI{0.25}{\radian} and \SI{0.36}{\radian} for groups \textit{G1} and \textit{G2}, respectively.
 As with the pan estimation errors, the participants from \textit{G1} seemed more adept at estimating the correct elevation.
 %However, the difference is not as significant as for the pan, with \textit{G1} displaying a 36\% improvement over \textit{G2} in their elevation estimation vs. 42.5\% in the pan dimension. 
 Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 63\% and 47\% for each group~\cite{schonstein2008comparison}. 
 Indeed, the performance is comparable to that of open-back and expensive in-ear headphones.
 There is a more modest improvement of 43\% in \textit{G1} and 16\% for \textit{G2} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization}.
-However, the participants from~\cite{stanley2006lateralization} all had healthy eyesight, making the latter comparison invalid. 
-Interestingly, the elevation errors for group \textit{G2} are centred around the negative angle, as seen in \cref{fig:err-results}, indicating a possible underlying bias in the participants or the interface.
-A similar trend was observed in~\cite{stanley2006lateralization} and warrants an investigation with a larger participant pool to determine the underlying bias, if any. 
+However, all the participants in~\cite{stanley2006lateralization} had healthy eyesight, making the latter comparison invalid. 
+Interestingly, the elevation errors for group \textit{G2} are centred around the negative angle, as shown in \cref{fig:err-results}, indicating a possible underlying bias either in the participants or the interface.
+A similar trend was observed in~\cite{stanley2006lateralization}. Further investigation with a larger participant pool is needed to determine this underlying bias, if any. 
 
-The error data was used to generate scatter plots that show the correlation between the position that the guidance system presented the participants and the position the participants thought the targets were.
-These plots are given in \cref{fig:correlation-results} and show a reasonably positive correlation between the guidance targets and the selected targets, which indicates that the participants correctly interpreted the interface's output for the most part. 
+The error data was used to generate scatter plots that show the correlation between the target's direction presented by the guidance system to the participants and the one they thought the targets were.
+These plots are given in \cref{fig:correlation-results} and show a reasonably positive correlation between the guidance and the selected targets, indicating that the participants correctly interpreted the interface's output in most of the cases. 
 The Spearman correlation scores for each dataset, listed in \cref{tab:results}, confirm this, as well as the negative angle bias in the elevation dimensions.
 
 \begin{figure}[t]
@@ -257,7 +257,7 @@ Furthermore, the limitations of these headphones were largely negated by conveyi
 
 Future work will involve a more in-depth investigation with a larger participant pool to determine the factors that affect performance and enable a more detailed statistical analysis.
 For example, will adjusting the elevation function's gradient make it easier to guess the target's elevation and what is the performance difference between participants with limited and healthy eyesight?  
-Furthermore, experiments with a large group of people with vision impairments will provide an opportunity to gauge their opinion on the interface and identify possible avenues of improvements to user friendliness.
+Furthermore, experiments with a large group of people with visual impairments will provide an opportunity to gauge their opinion on the interface and identify possible avenues of improvements to user friendliness.
 Incorporating a progressive co-adaptation mechanism into the system, as suggested in~\cite{gallina2015progressive}, can also be considered to improve the overall user-friendliness and guidance performance.
 
 \bibliographystyle{splncs04}
