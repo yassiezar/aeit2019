@@ -15,7 +15,6 @@
 
 \begin{document}
 
-%\title{Bone-Conduction Audio Interface to\\Guide People with Visual Impairments}
 \title{Bone-Conduction Audio Interface to\\Guide People with Visual Impairments}
 
 \author{Jacobus C. Lock\inst{1} \and 
@@ -49,16 +48,18 @@ In particular, researchers in the active vision field have have made much progre
 There is, however, a significant research question about whether techniques from active machine vision can be applied to humans, i.e.\ can a machine identify a point of interest in a scene and direct a human, instead of an electronic servo, to focus on that point?
 If this can be done, it would be beneficial to people with visual impairments and will augment their ability to search for an arbitrary point or object of interest and identify an unknown scene. 
 
-The ActiVis project aims to deliver a mobile guidance system, pictured in \cref{fig:tango-headphone}, that will ultimately be able to guide a user with vision impairments on the last leg of their journey, i.e.\ the so-called `last 10-yard problem'. 
-The prototype platform is based on a Google Project Tango\footnote{\url{https://en.wikipedia.org/wiki/Tango\_(platform)}} device that embeds a color camera and provides access to powerful real-time localisation (through IMU measurements and landmark tracking) and image-processing facilities. It also provides access to Android's full range of interface tools and I/O options. 
+The ActiVis project aims to deliver a mobile guidance system, pictured in \cref{fig:tango} and \cref{fig:tango-headphone}, that will ultimately be able to guide a user with vision impairments on the last leg of their journey, i.e.\ the so-called `last 10-yard problem'. 
+The prototype platform is based on a Google Project Tango\footnote{\url{https://en.wikipedia.org/wiki/Tango\_(platform)}} device that embeds a colour camera and provides access to powerful real-time localisation (through IMU measurements and landmark tracking) and image-processing facilities. It also provides access to Android's full range of interface tools and I/O options. 
 Furthermore, a set of bone-conduction headphones (pictured in \cref{fig:tango-headphone}), which are placed on a user's cheekbones instead of their ears and do not interfere with normal hearing, are used to transmit the audio signals to the user.
 
 \begin{figure}[t]
   \centering
+  \subfloat[]{\label{fig:tango}\includegraphics[width=0.4\columnwidth]{figures/tango_asus.jpeg}}
+~
   \subfloat[]{\label{fig:tango-headphone}\includegraphics[width=0.4\columnwidth]{figures/tango_headphone.png}}
 ~
-  \subfloat[]{\label{fig:participant}\includegraphics[width=0.25\columnwidth]{figures/vi_participant.pdf}}
-  \caption{Pictures of the Tango device and bone-conduction headphones the system is based on (left) and both in use in an experiment (right).\tofix{add a picture of the Tango phone}}
+  \subfloat[]{\label{fig:participant}\includegraphics[width=0.2\columnwidth]{figures/vi_participant.pdf}}
+  \caption{Pictures of the latest Tango mobile phone model (left), the Tango tablet and bone-conducting headphones that were used in this work (centre) and both in use in an experiment (right).}
 \end{figure}
 
 Humans are able to determine the 3D position of a sound source and by exploiting this natural ability, the real-time guidance instructions can easily be interpreted without posing a significant cognitive load.
@@ -80,7 +81,7 @@ The majority of these systems rely on one or a combination of vocal~\cite{mocanu
 In general, participants with vision impairments report that they prefer haptic and vocal feedback out of the three options~\cite{arditi2013user}.
 However, haptic feedback systems typically have extra hardware requirements to transmit the guidance instructions.
 Furthermore, haptic and vocal feedback can become a cognitive burden, particularly where high resolution guidance, which can exceed the bandwidth of these particular senses, is required.
-Indeed, participants report that they would prefer control over the vocal feedback channel and trigger guidance instructions, instead of being given constant guidance instructions.\tofix{reference?}
+Indeed, participants report that they would prefer control over the vocal feedback channel and trigger guidance instructions, instead of being given constant guidance instructions~\cite{arditi2013user}.
 Simple audio tones are less affected by these bandwidth and hardware limitations, but they can potentially fatigue the user's senses if too unpleasant.
 
 Researchers have investigated using audio signals that are spatialised with a head-related transfer function (HRTF), simulating a sound source located at some arbitrary 3D position~\cite{geronazzo2016interactive,wilson2007swan,katz2010navig,blum2013spatialized}.
@@ -132,7 +133,7 @@ The pan angle, instead, can be conveyed by transforming the audio signal with an
   \subfloat[]{\label{fig:cam-coords}\includegraphics[width=0.3\columnwidth]{figures/camera_coordinate.pdf}}
 ~
   \subfloat[]{\label{fig:pitch-gain}\includegraphics[clip, trim=0 0 0 40, width=0.6\columnwidth]{figures/pitch_gain_function.png}}
-  \caption{The reference system used by the guidance interface showing the camera vector and pan and elevation angles (left) and the pitch gain function used to convey the target's elevation angle (right). Note the logarithmic scale of the frequency axis.\tofix{can you add more horizontal lines on the graph?}}
+  \caption{The reference system used by the guidance interface showing the camera vector and pan and elevation angles (left) and the pitch gain function used to convey the target's elevation angle (right). Note the logarithmic scale of the frequency axis.}
 \end{figure}
 
 \subsubsection{Pan}
