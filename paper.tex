@@ -16,7 +16,7 @@
 \begin{document}
 
 %\title{Bone-Conduction Audio Interface to\\Guide People with Visual Impairments}
-\title{Bone-Conduction and Spatialised Audio to Guide People with Visual Impairments}
+\title{Bone-Conduction Audio Interface to\\Guide People with Visual Impairments}
 
 \author{Jacobus C. Lock\inst{1} \and 
 Iain Gilchrist\inst{2} \and
@@ -127,12 +127,12 @@ Spatialised audio signals are well-suited to the task, displaying similar levels
 However, given the previously discussed limitations of bone-conduction and spatialised audio, we propose a simple linear adjustment to the signal's pitch as a function of the elevation angle. 
 The pan angle, instead, can be conveyed by transforming the audio signal with an HRTF, and indeed it has been found that this dimension is unaffected by using bone-conducting headphones\cite{schonstein2008comparison,macdonald2006spatial,stanley2006lateralization}. 
 
-\begin{figure}
+\begin{figure}[t]
   \centering
   \subfloat[]{\label{fig:cam-coords}\includegraphics[width=0.3\columnwidth]{figures/camera_coordinate.pdf}}
 ~
   \subfloat[]{\label{fig:pitch-gain}\includegraphics[clip, trim=0 0 0 40, width=0.6\columnwidth]{figures/pitch_gain_function.png}}
-  \caption{The reference system used by the guidance interface showing the camera vector and pan and elevation angles (left) and the pitch gain function used to convey the target's elevation angle (right). }
+  \caption{The reference system used by the guidance interface showing the camera vector and pan and elevation angles (left) and the pitch gain function used to convey the target's elevation angle (right). Note the logarithmic scale of the frequency axis.\tofix{can you add more horizontal lines on the graph?}}
 \end{figure}
 
 \subsubsection{Pan}
@@ -144,39 +144,39 @@ For example, a sound that comes from the individual's right will hit the right e
 In this work, a pure \SI{10}{\hertz} sinusoidal wave was used. 
 People typically have trouble localising a pure tone without a sufficiently rich spectral signature.
 However, the ITD and ILD are independent of the tone's spectral make-up, while the elevation angle is given through a different mechanism. Therefore, a pure sine wave is suitable to convey the target's pan angle.
-To transform and spatialise the audio signal, we used OpenAL's default HRTF, based on the MIT's KEMAR dataset~\cite{hiebert2005openal}, that uses the user and targets' positions as input and outputs a transformed audio signal.
+To transform and spatialise the audio signal, we used OpenAL's default HRTF, based on the MIT's KEMAR dataset~\cite{hiebert2005openal}, which uses the person and targets' positions as input, and outputs a transformed audio signal.
 
 \subsubsection{Elevation}
 
-A generic HRTF implementation with bone-conduction headphones has trouble conveying the elevation angle of a sound source accurately~\cite{macdonald2006spatial,schonstein2008comparison}.
-To compensate for this, we convey the target's elevation angle by adjusting the tone's pitch (i.e.\ the sine wave's frequency) as a function of the elevation. 
-When the camera vector is at the target's elevation, the tone is set to neutral pitch.
-Then, when the target is above the camera vector, the pitch is increased and decreased when the target is below the camera vector.
-This high/low association scheme is used given humans' natural association of high-pitched sounds with elevated sound sources and lower-pitched sounds with source's below the individual's earline~\cite{pratt1930spatial,blauert1997spatial}.
-A logarithmic, octave and semi-tone based function is used to adjust the tone's pitch to ensure perceptible changes while keeping the timbre roughly constant~\cite{shepard1964circularity}.
+A generic HRTF implementation with bone-conduction headphones is not very effective in conveying the elevation angle of a sound source~\cite{macdonald2006spatial,schonstein2008comparison}.
+To compensate for this, we communicate the target's elevation angle by adjusting the tone's pitch (i.e.\ the sine wave's frequency) as a function of the elevation. 
+When the camera vector is at the right target's elevation, the tone pitch is set to neutral.
+When the target is above or below the camera vector, the pitch is increased or decreased, respectively.
+This high/low association scheme is motivated by humans' natural association of high-pitched sounds with elevated sound sources, and low-pitched sounds with source's below the individual's earline~\cite{pratt1930spatial,blauert1997spatial}.
+An octave- and semitone-based function is used to adjust the tone's pitch to ensure perceptible changes, while keeping the timbre roughly constant~\cite{shepard1964circularity}.
 The pitch is updated at a rate of \SI{10}{\hertz} and changes as the user moves the device.
 
 The pitch is changed as a linear function of the elevation angle and the gradient is determined by setting the angle and pitch limits.
-For this work we only consider a \SI{180}{\degree} field of view in front of the user and limit the elevation angle to a range of $[-\frac{\pi}{2}, \frac{\pi}{2}]$.
+For this work, we only consider a \SI{180}{\degree} field of view in front of the user and limit the elevation angle to a range of \SI{\pm90}{\degree}, or $[-\frac{\pi}{2}, \frac{\pi}{2}]$.
 The pitch limits are set at some integer number of octaves above and below the neutral, on-elevation pitch.
-After practical tests with the interface, we set the neutral pitch to \SI{512}{\hertz}, which is comfortably audible and allows for a large number of audible octave limits to be selected.
-For this work, we set the pitch limits to 2 octaves away from the neutral pitch, giving frequency limits of [\SI{128}{\hertz}, \SI{2048}{\hertz}].
+After practical tests with the interface, we set the neutral pitch to \SI{512}{\hertz}, which is comfortably audible and allows for a large number of suitable octave limits to be selected.
+We set the pitch limits to 2 octaves away from the neutral pitch, giving frequency limits of [\SI{128}{\hertz}, \SI{2048}{\hertz}].
 The linear function is visualised in \cref{fig:pitch-gain}.
 
-\subsection{Implementation}
-
-A diagram of the experimental system pipeline is shown in \cref{fig:pipeline}, where the arrows indicate the direction of the flow of information.
-When the user taps the Tango's screen, a new virtual target is generated and its coordinates are sent to the audio generation module, along with the device's current position and orientation.
-The audio generator then produces a tone based on the difference between the device and target's positions and sends it to the audio output channel, which plays it back to the user.
-The WiFi recording module is constantly monitoring the different parameter values of the device and target's positions, as well as the system's output, and records it to a remotely stored datafile. 
-
-\begin{figure}
+\begin{figure}[t]
   \centering
-  \includegraphics[clip=true, trim=0 120 80 50, width=0.8\columnwidth]{figures/pipeline.pdf}
+  \includegraphics[clip=true, trim=0 120 80 50, width=0.9\columnwidth]{figures/pipeline.pdf}
   \caption{A diagram of the individual system components and their communication pipelines. $F$ indicates a feedback signal and $P$ a pose signal. }\label{fig:pipeline}
 \end{figure}
 
-\section{Experiment and Results}\label{sec:experiment-and-results}
+\subsection{Implementation}
+
+A diagram of the experimental system pipeline is shown in \cref{fig:pipeline}, where the arrows indicate the direction of the information flow.
+When the user taps the Tango's screen, a new virtual target is generated and its coordinates are sent to the audio generation module, along with the device's current position and orientation.
+The audio generator then produces a tone based on the difference between the device and the target's positions. The tone is sent to the audio output channel, which plays it back to the user.
+A WiFi recording module is constantly monitoring the different values of the device's parameters and of the target's position, as well as the system's output, recording everything to a remotely stored datafile. 
+
+\section{Experiments and Results}\label{sec:experiment-and-results}
 
 \subsection{Procedure}
 
