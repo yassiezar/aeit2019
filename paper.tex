@@ -210,39 +210,39 @@ These results are presented in the boxplots in \cref{fig:err-results} and summar
   \caption{A summary of the results collected from the experiment. }\label{tab:results}
   \begin{tabular}{p{1cm}p{2cm}p{2.2cm}@{\hskip 1cm}p{3cm}}
     \toprule
-    &           & Mean absolute error [rad]  & Pearson Correlation score \\ \midrule
-    \multirow{2}{*}{\textit{G1}} & Pan       & $0.25\pm0.24$ & $0.83\;(p<0.001)$ \\
-				 & Elevation & $0.37\pm0.28$ & $0.44\;(p<0.001)$ \\ \midrule
-    \multirow{2}{*}{\textit{G2}} & Pan       & $0.38\pm0.21$ & $0.35\;(p<0.001)$ \\
-				 & Elevation & $0.51\pm0.32$ & $0.40\;(p=0.001)$ \\
+    &           & Mean absolute error [rad]  & Spearman Correlation score \\ \midrule
+    \multirow{2}{*}{\textit{G1}} & Pan       & $0.23\pm0.24$ & $0.88\;(p<0.001)$ \\
+				 & Elevation & $0.25\pm0.28$ & $0.64\;(p<0.001)$ \\ \midrule
+    \multirow{2}{*}{\textit{G2}} & Pan       & $0.45\pm0.21$ & $0.41\;(p<0.001)$ \\
+				 & Elevation & $0.36\pm0.32$ & $0.61\;(p=0.001)$ \\
     \bottomrule
   \end{tabular}
 \end{table}
 
 The average pan error from group \textit{G1} falls well within the ranges observed in~\cite{macdonald2006spatial,schonstein2008comparison} of $[0.16, 0.38]$ radians and $[0.17, 0.26]$ radians respectively. 
 Indeed, the majority of samples fall within even the more conservative latter range. 
-However, the participants with vision impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.25 vs. 0.37 radians, Kruskal-Wallis test $p<0.001$). 
+However, the participants with vision impairments in group \textit{G2}  demonstrate a wider spread in error data and higher average error than \textit{G1} (0.23 vs. 0.45 radians, Kruskal-Wallis test $p<0.001$). 
 The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend, but an investigation with a larger sample size for \textit{G2} should be considered before definitive conclusions can be made.
 
 The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous research results on human audition~\cite{barfield1997visual}. 
-The mean absolute errors of the participants are \SI{0.37}{\radian} and \SI{0.51}{\radian} for groups \textit{G1} and \textit{G2} respectively.
+The mean absolute errors of the participants are \SI{0.25}{\radian} and \SI{0.36}{\radian} for groups \textit{G1} and \textit{G2} respectively.
 As with the pan estimation errors, the participants from \textit{G1} seemed more adept at estimating the correct elevation.
 %However, the difference is not as significant as for the pan, with \textit{G1} displaying a 36\% improvement over \textit{G2} in their elevation estimation vs. 42.5\% in the pan dimension. 
-Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 46\% and 26\% for each group~\cite{schonstein2008comparison}. 
+Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 63\% and 47\% for each group~\cite{schonstein2008comparison}. 
 Indeed, the performance is comparable to that of open-back and expensive in-ear headphones.
-There is a lesser improvement (11\%) with \textit{G1} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization} and a 18\% reduction in performance for group \textit{G2}.
+There is a more modest improvement of 43\% in \textit{G1} and 16\% for \textit{G2} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization}.
 However, the participants from~\cite{stanley2006lateralization} all had healthy eyesight, making the latter comparison invalid. 
 Interestingly, the elevation errors for group \textit{G2} are centred around the negative angle, indicating a possible underlying bias in the participants or the interface\todo{show}.
 A similar trend was observed in~\cite{stanley2006lateralization} and warrants an investigation with a larger participant pool to determine the underlying bias, if any. 
 
 The error data was used to generate scatter plots that show the correlation between the position that the guidance system presented the participants and the position the participants thought the targets were.
 These plots are given in \cref{fig:correlation-results} and show a reasonably positive correlation between the guidance targets and the selected targets, which indicates that the participants correctly interpreted the interface's output for the most part. 
-The Pearson correlation scores for each dataset, listed in \cref{tab:results}, confirm this, as well as the negative angle bias in the elevation dimensions.
+The Spearman correlation scores for each dataset, listed in \cref{tab:results}, confirm this, as well as the negative angle bias in the elevation dimensions.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=1.0\columnwidth]{figures/correlation.png}
-  \caption{Boxplots of the angular errors collected during the pointing experiment. }\label{fig:correlation-results}
+  \caption{Scatter plots that show the targets' actual positions and the participants' guesses, as well as the line of best fit showing the relationship between the data. }\label{fig:correlation-results}
 \end{figure}
 
 \section{Conclusion}\label{sec:conclusion}
