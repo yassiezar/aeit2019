@@ -197,24 +197,26 @@ To minimise the speed/accuracy biases in the results, we asked the participants 
 
 The data collected during the experiment were grouped together by participant group and analysed.
 Similar to the results from~\cite{macdonald2006spatial,schonstein2008comparison}, we use the absolute mean errors for each dimension which allows us to compare our results to the aforementioned works'. 
-These results are presented in the boxplots in \cref{fig:err-results} and summarised in \cref{tab:results}.
+These results are presented in the boxplots in \cref{fig:err-results-fig} and summarised in \cref{tab:results}.
 
-\begin{figure}[t]
+\begin{figure}
   \centering
-  \includegraphics[width=0.7\columnwidth]{figures/pan_tilt_err.png}
-  \caption{Boxplots of the angular errors collected during the pointing experiment. }\label{fig:err-results}
+  \subfloat[]{\label{fig:err-results-abs}\includegraphics[width=0.7\columnwidth]{figures/pan_tilt_err_abs.png}}
+\quad
+  \subfloat[]{\label{fig:err-results}\includegraphics[width=0.7\columnwidth]{figures/pan_tilt_err.png}}
+  \caption{Boxplots of the absolute (top) and signed (bottom) angular errors collected during the pointing experiment. }\label{fig:err-results-fig}
 \end{figure}
 
 \begin{table}
   \centering
   \caption{A summary of the results collected from the experiment. }\label{tab:results}
-  \begin{tabular}{p{1cm}p{2cm}p{2.2cm}@{\hskip 1cm}p{3cm}}
+  \begin{tabular}{p{1cm}p{2cm}p{2.2cm}@{\hskip 1cm}p{3.2cm}}
     \toprule
     &           & Mean absolute error [rad]  & Spearman Correlation score \\ \midrule
     \multirow{2}{*}{\textit{G1}} & Pan       & $0.23\pm0.24$ & $0.88\;(p<0.001)$ \\
 				 & Elevation & $0.25\pm0.28$ & $0.64\;(p<0.001)$ \\ \midrule
     \multirow{2}{*}{\textit{G2}} & Pan       & $0.45\pm0.21$ & $0.41\;(p<0.001)$ \\
-				 & Elevation & $0.36\pm0.32$ & $0.61\;(p=0.001)$ \\
+				 & Elevation & $0.36\pm0.32$ & $0.61\;(p<0.001)$ \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -232,7 +234,7 @@ Comparing these results to methods that convey elevation through an HRTF, we see
 Indeed, the performance is comparable to that of open-back and expensive in-ear headphones.
 There is a more modest improvement of 43\% in \textit{G1} and 16\% for \textit{G2} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization}.
 However, the participants from~\cite{stanley2006lateralization} all had healthy eyesight, making the latter comparison invalid. 
-Interestingly, the elevation errors for group \textit{G2} are centred around the negative angle, indicating a possible underlying bias in the participants or the interface\todo{show}.
+Interestingly, the elevation errors for group \textit{G2} are centred around the negative angle, as seen in \cref{fig:err-results}, indicating a possible underlying bias in the participants or the interface.
 A similar trend was observed in~\cite{stanley2006lateralization} and warrants an investigation with a larger participant pool to determine the underlying bias, if any. 
 
 The error data was used to generate scatter plots that show the correlation between the position that the guidance system presented the participants and the position the participants thought the targets were.
