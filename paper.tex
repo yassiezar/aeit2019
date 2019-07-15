@@ -35,7 +35,7 @@ Nicola Bellotto\inst{1}}
   This system uses bone-conduction headphones to transmit audio signals to the user and requires an effective non-visual interface.
   To this end, we propose a new audio-based interface that uses a spatialised signal to convey a target's position on the horizontal plane. 
   The vertical position on the median plan is given by adjusting the tone's pitch to overcome the audio localisation limitations of bone-conduction headphones. 
-  This interface is validated through a set of experiments with blindfolded and visually impaired users. 
+  This interface is validated through a set of experiments with blindfolded and visually impaired participants. 
 \keywords{Human-machine interface \and vision impairment \and spatialised sound \and varying pitch \and bone-conduction}
 \end{abstract} 
 
@@ -48,8 +48,9 @@ In particular, researchers in the active vision field have have made much progre
 There is, however, a significant research question about whether techniques from active machine vision can be applied to humans, i.e.\ can a machine identify a point of interest in a scene and direct a human, instead of an electronic servo, to focus on that point?
 If this can be done, it would be beneficial to people with visual impairments and will augment their ability to search for an arbitrary point or object of interest and identify an unknown scene. 
 
-The ActiVis project aims to deliver a mobile guidance system, pictured in \cref{fig:tango} and \cref{fig:tango-headphone}, that will ultimately be able to guide a user with vision impairments on the last leg of their journey, i.e.\ the so-called `last 10-yard problem'. 
-The prototype platform is based on a Google Project Tango\footnote{\url{https://en.wikipedia.org/wiki/Tango\_(platform)}} device that embeds a colour camera and provides access to powerful real-time localisation (through IMU measurements and landmark tracking) and image-processing facilities. It also provides access to Android's full range of interface tools and I/O options. 
+The ActiVis project aims to deliver a mobile guidance system that will ultimately be able to guide a user with vision impairments on the last leg of their journey, i.e.\ the so-called `last 10-yard problem'. 
+The prototype platform is based on a Google Project Tango\footnote{\url{https://en.wikipedia.org/wiki/Tango\_(platform)}} device, pictured in \cref{fig:tango} and \cref{fig:tango-headphone}, that embeds a colour camera and provides access to powerful real-time localisation (through IMU measurements and landmark tracking) and image-processing facilities. 
+It also provides access to Android's full range of interface tools and I/O options. 
 Furthermore, a set of bone-conduction headphones (pictured in \cref{fig:tango-headphone}), which are placed on a user's cheekbones instead of their ears and do not interfere with normal hearing, are used to transmit the audio signals to the user.
 
 \begin{figure}[t]
@@ -96,16 +97,16 @@ However, these studies focussed on their system's total effectiveness, rather th
 
 \subsection{Hardware Selection}
 
-Electronic navigation aids and guidance systems for people with vision impairments often have acceptability and usability problems due to limitations in academic research and prototypes: prohibitive costs, unfriendly user interfaces, significant hardware requirements (e.g.\ head-mounted cameras and GPS antennae)~\cite{golledge2004stated,yusif2016older,arditi2013user}.
+Electronic navigation aids and guidance systems for people with vision impairments often have acceptability and usability problems due to limitations in academic research and prototypes, such as prohibitive costs, unfriendly user interfaces and significant hardware requirements (e.g.\ head-mounted cameras and GPS antennae)~\cite{golledge2004stated,yusif2016older,arditi2013user}.
 Indeed, the traditional walking cane remains the standard tool for navigation and obstacle avoidance. 
 With the ActiVis system, we aim to tackle the issue of cost, user-acceptance and usability by using only off-the-shelf devices and hardware, as far as possible, and avoiding any special requirements.
 Following this design principle, we adopted a hand-held mobile device and a discreet headset to avoid the person standing out in public places while using the system.
-The ActiVis system is based on a concept proposed in~\cite{lock2017portable,lock2019active}, using a Google Tango device that is able to localise itself in real-time and has the benefit of a compact, familiar form-factor, which will help to overcome the hurdle of user-acceptance and usability.
+The ActiVis system is based on a concept proposed in~\cite{lock2017portable,lock2019active} that uses a Google Tango device that is able to localise itself in real-time and has the benefit of a compact, familiar form-factor, which will help to overcome the hurdle of user-acceptance and usability.
 
 A set of bone-conduction headphones is used as the audio transmission medium.
 These headphones sit on a user's cheekbones and conduct the audio signals through the skull into the inner ear, instead of through the outer part like typical over-ear headphones. 
 This has the benefit of allowing the user access to ambient sounds and noise, so a person with limited vision can still relies on sound to detect, for example, oncoming vehicles and people~\cite{lichtenstein2012headphone}.
-Alternative solutions, such as open-back headphones, were also considered. These allow ambient noise through, but they still filter the incoming sound. The bone-conduction AfterShockz headphones (\cref{fig:tango-headphone}) were ultimately selected since they do not interfere on other sounds and are also more discreet than the larger over-ear headphones. 
+Alternative solutions, such as open-back headphones, were also considered. These allow ambient noise through, but they still filter the incoming sound. The AfterShockz headphones (\cref{fig:tango-headphone}) were ultimately selected since they do not interfere on other sounds and are also more discreet than the larger over-ear headphones. 
 
 \subsection{Human Audio Localisation}
 
@@ -116,7 +117,7 @@ Monaural cues are taken from the interaction of the sound with the human anatomy
 When the modified audio signal enters the inner ear canal, the human brain is able to analyse the frequency response and accurately determine the position of the sound source on the median plane. 
 The distance to the source is simply derived as the intensity, or volume, of the source, i.e.\ a louder sound would appear closer to the user than a softer one. 
 
-When an audio signal is transmitted via a set of speakers or headsets, it can be transformed with an HRTF to mimic the characteristics of a natural sound source before it is transmitted, tricking the brain into believing a sound is located at some arbitrary position.
+When an audio signal is transmitted via a set of speakers or headphones, it can be transformed with an HRTF to mimic the characteristics of a natural sound source before it is transmitted, tricking the brain into believing a sound is located at some arbitrary position.
 An HRTF is a mathematical function that simulates the response signal of a human head and is derived by capturing key characteristics that affect the monaural and binaural responses, such as the user's hearing levels and head size.
 Since hearing responses are unique amongst different users, the best results would be observed if each user had their own customised HRTF.\
 However, given the complicated process involved to capture the required user characteristics, making unique HRTFs is often an untenable solution and using average values (e.g.\ head measurements, height, etc.) have shown to produce acceptable results~\cite{gardner1995hrtf}.
@@ -142,7 +143,7 @@ The human audition system uses binaural comparison cues, such as ITD and ILD, to
 The ITD is the perceived time delay between the signal reaching both ears, while the ILD is the perceived volume difference in the signal.
 For example, a sound that comes from the individual's right will hit the right ear first with a slightly higher volume.
 
-In this work, a pure \SI{10}{\hertz} sinusoidal wave was used. 
+In this work, a pure sinusoidal wave was used. 
 People typically have trouble localising a pure tone without a sufficiently rich spectral signature.
 However, the ITD and ILD are independent of the tone's spectral make-up, while the elevation angle is given through a different mechanism. Therefore, a pure sine wave is suitable to convey the target's pan angle.
 To transform and spatialise the audio signal, we used OpenAL's default HRTF, based on the MIT's KEMAR dataset~\cite{hiebert2005openal}, which uses the person and targets' positions as input, and outputs a transformed audio signal.
@@ -151,7 +152,7 @@ To transform and spatialise the audio signal, we used OpenAL's default HRTF, bas
 
 A generic HRTF implementation with bone-conduction headphones is not very effective in conveying the elevation angle of a sound source~\cite{macdonald2006spatial,schonstein2008comparison}.
 To compensate for this, we communicate the target's elevation angle by adjusting the tone's pitch (i.e.\ the sine wave's frequency) as a function of the elevation. 
-When the camera vector is at the right target's elevation, the tone pitch is set to neutral.
+When the camera vector is at the correct elevation, the tone pitch is set to neutral.
 When the target is above or below the camera vector, the pitch is increased or decreased, respectively.
 This high/low association scheme is motivated by humans' natural association of high-pitched sounds with elevated sound sources, and low-pitched sounds with source's below the individual's earline~\cite{pratt1930spatial,blauert1997spatial}.
 An octave- and semitone-based function is used to adjust the tone's pitch to ensure perceptible changes, while keeping the timbre roughly constant~\cite{shepard1964circularity}.
