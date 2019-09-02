@@ -165,18 +165,19 @@ After practical tests with the interface, we set the neutral pitch to \SI{512}{\
 We set the pitch limits to 2 octaves away from the neutral pitch, giving frequency limits of [\SI{128}{\hertz}, \SI{2048}{\hertz}].
 The linear function is visualised in \cref{fig:pitch-gain}.
 
-\begin{figure}[t]
-  \centering
-  \includegraphics[clip=true, trim=0 120 80 50, width=0.9\columnwidth]{figures/pipeline.pdf}
-  \caption{A diagram of the individual system components and their communication pipelines. $F$ indicates a feedback signal and $P$ a pose signal. }\label{fig:pipeline}
-\end{figure}
-
 \subsection{Implementation}
 
 A diagram of the experimental system pipeline is shown in \cref{fig:pipeline}, where the arrows indicate the direction of the information flow.
 When the user taps the Tango's screen, a new virtual target is generated and its coordinates are sent to the audio generation module, along with the device's current position and orientation.
 The audio generator then produces a tone based on the difference between the device and the target's positions. The tone is sent to the audio output channel, which plays it back to the user.
 A WiFi recording module is constantly monitoring the different values of the device's parameters and of the target's position, as well as the system's output, recording everything to a remotely stored datafile. 
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[clip=true, trim=0 120 80 50, width=0.9\columnwidth]{figures/pipeline.pdf}
+  \caption{A diagram of the individual system components and their communication pipelines. $F$ indicates a feedback signal and $P$ a pose signal. }\label{fig:pipeline}
+\end{figure}
+
 
 \section{Experiments and Results}\label{sec:experiment-and-results}
 
