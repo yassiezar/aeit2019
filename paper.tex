@@ -32,9 +32,9 @@ Nicola Bellotto\inst{1}}
 
 \begin{abstract}
   The ActiVis\footnote{\url{https://lcas.github.io/ActiVis/}} project's aim is to build a mobile guidance aid to help people with limited vision find objects in an unknown environment.
-  This system uses bone-conduction headphones to transmit audio signals to the user and requires an effective non-visual interface.
+  This system uses bone-conducting headphones to transmit audio signals to the user and requires an effective non-visual interface.
   To this end, we propose a new audio-based interface that uses a spatialised signal to convey a target's position on the horizontal plane. 
-  The vertical position on the median plan is given by adjusting the tone's pitch to overcome the audio localisation limitations of bone-conduction headphones. 
+  The vertical position on the median plan is given by adjusting the tone's pitch to overcome the audio localisation limitations of bone-conducting headphones. 
   This interface is validated through a set of experiments with blindfolded and visually impaired participants. 
 \keywords{Human-machine interface \and vision impairment \and spatialised sound \and varying pitch \and bone-conduction}
 \end{abstract} 
@@ -51,13 +51,13 @@ If this can be done, it would be beneficial to people with visual impairments an
 The ActiVis project aims to deliver a mobile guidance system that will ultimately be able to guide a user with vision impairments on the last leg of their journey, i.e.\ the so-called `last 10-yard problem'. 
 The prototype platform is based on a Google Project Tango\footnote{\url{https://en.wikipedia.org/wiki/Tango\_(platform)}} device, pictured in \cref{fig:tango} and \cref{fig:tango-headphone}, that embeds a colour camera and provides access to powerful real-time localisation (through IMU measurements and landmark tracking) and image-processing facilities. 
 It also provides access to Android's full range of interface tools and I/O options. 
-Furthermore, a set of bone-conduction headphones (pictured in \cref{fig:tango-headphone}), which are placed on a user's cheekbones instead of their ears and do not interfere with normal hearing, are used to transmit the audio signals to the user.
+Furthermore, a set of bone-conducting headphones (pictured in \cref{fig:tango-headphone}), which are placed on a user's cheekbones instead of their ears and do not interfere with normal hearing, are used to transmit the audio signals to the user.
 
 \begin{figure}[t]
   \centering
   \subfloat[]{\label{fig:tango}\includegraphics[width=0.4\columnwidth]{figures/tango_asus.jpeg}}
 ~
-  \subfloat[]{\label{fig:tango-headphone}\includegraphics[width=0.35\columnwidth]{figures/tango_headphone.png}}
+  \subfloat[]{\label{fig:tango-headphone}\includegraphics[width=0.3\columnwidth]{figures/tango_headphone.png}}
 ~
   \subfloat[]{\label{fig:participant}\includegraphics[width=0.2\columnwidth]{figures/vi_participant.pdf}}
   \caption{Pictures of the latest Tango mobile phone (left), the former Tango tablet and the bone-conducting headphones used in this work (centre), and a participant with visual impairments during an experiment (right).}
@@ -66,9 +66,9 @@ Furthermore, a set of bone-conduction headphones (pictured in \cref{fig:tango-he
 Humans are able to determine the 3D position of a sound source and by exploiting this natural ability, the real-time guidance instructions can easily be interpreted without posing a significant cognitive load.
 A sound source can be spatialised by adjusting a tone's spectral make-up (elevation angle), time delay and level difference (pan angle), and intensity (distance).
 In our case, only the pan and elevation positions are transmitted to the user to point the camera towards a target object or visual feature.
-However, since bone-conduction headphones bypass the outer ear structure, their spectral signature cannot properly be interpreted and we therefore convey the target's elevation angle by adjusting the tone's pitch.
+However, since bone-conducting headphones bypass the outer ear structure, their spectral signature cannot properly be interpreted and we therefore convey the target's elevation angle by adjusting the tone's pitch.
 A similar approach was used in~\cite{durette2008visuo}, but the study did not focus on or investigate the interface's efficacy.
-Indeed, the work presented in this paper serves as an initial study into an interface that can effectively communicate the pan and elevation angles of a target location through a set of bone-conduction headphones using standard audio libraries and audio manipulations.
+Indeed, the work presented in this paper serves as an initial study into an interface that can effectively communicate the pan and elevation angles of a target location through a set of bone-conducting headphones using standard audio libraries and audio manipulations.
 Furthermore, we demonstrate this approach's effectiveness through a simple experiment.
 
 The rest of the paper starts by discussing previous relevant works and research in \cref{sec:prev-work}, followed by a discussion on the design and implementation of our interface in \cref{sec:interface-design}.
@@ -88,8 +88,8 @@ Simple audio tones are less affected by these bandwidth and hardware limitations
 Researchers have investigated using audio signals that are spatialised with a head-related transfer function (HRTF), simulating a sound source located at some arbitrary 3D position~\cite{geronazzo2016interactive,wilson2007swan,katz2010navig,blum2013spatialized}.
 The authors generally report favourable results for this guidance approach when used with standard over-ear headphones or speakers. 
 However, other authors have found that the choice of audio transmission medium can have a significant effect on performance.
-Cheaper headphones and bone-conduction headphones generally report unfavourable results when compared to over-ear or more expensive alternatives~\cite{schonstein2008comparison,macdonald2006spatial,stanley2006lateralization}. 
-This seems to be limited to the elevation dimension, however, and can be improved with HRTFs adjusted for the bone-conduction pathway~\cite{stanley2006lateralization}.
+Cheaper headphones and bone-conducting headphones generally report unfavourable results when compared to over-ear or more expensive alternatives~\cite{schonstein2008comparison,macdonald2006spatial,stanley2006lateralization}. 
+This seems to be limited to the elevation dimension, however, and can be improved with HRTFs adjusted for the bone-conducting pathway~\cite{stanley2006lateralization}.
 In~\cite{durette2008visuo}, they transmit a target's elevation angle by adjusting the signal's pitch and report favourable results. 
 However, these studies focussed on their system's total effectiveness, rather than the effectiveness of the pitch adjustment mechanism alone. In the next sections we want to investigate this more closely. 
 
@@ -103,7 +103,7 @@ With the ActiVis system, we aim to tackle the issue of cost, user-acceptance and
 Following this design principle, we adopted a hand-held mobile device and a discreet headset to avoid the person standing out in public places while using the system.
 The ActiVis system is based on a concept proposed in~\cite{lock2017portable,lock2019active} that uses a Google Tango device that is able to localise itself in real-time and has the benefit of a compact, familiar form-factor, which will help to overcome the hurdle of user-acceptance and usability.
 
-A set of bone-conduction headphones is used as the audio transmission medium.
+A set of bone-conducting headphones is used as the audio transmission medium.
 These headphones sit on a user's cheekbones and conduct the audio signals through the skull into the inner ear, instead of through the outer part like typical over-ear headphones. 
 This has the benefit of allowing the user access to ambient sounds and noise, so a person with limited vision can still relies on sound to detect, for example, oncoming vehicles and people~\cite{lichtenstein2012headphone}.
 Alternative solutions, such as open-back headphones, were also considered. These allow ambient noise through, but they still filter the incoming sound. The AfterShockz headphones (\cref{fig:tango-headphone}) were ultimately selected since they do not interfere on other sounds and are also more discreet than the larger over-ear headphones. 
@@ -150,7 +150,7 @@ To transform and spatialise the audio signal, we used OpenAL's default HRTF, bas
 
 \subsubsection{Elevation}
 
-A generic HRTF implementation with bone-conduction headphones is not very effective in conveying the elevation angle of a sound source~\cite{macdonald2006spatial,schonstein2008comparison}.
+A generic HRTF implementation with bone-conducting headphones is not very effective in conveying the elevation angle of a sound source~\cite{macdonald2006spatial,schonstein2008comparison}.
 To compensate for this, we communicate the target's elevation angle by adjusting the tone's pitch (i.e.\ the sine wave's frequency) as a function of the elevation. 
 When the camera vector is at the correct elevation, the tone pitch is set to neutral.
 When the target is above or below the camera vector, the pitch is increased or decreased, respectively.
@@ -240,21 +240,21 @@ However, all the participants in~\cite{stanley2006lateralization} had healthy ey
 Interestingly, the elevation errors for both groups are centred around the negative angle, as shown in \cref{fig:err-results}, indicating a possible underlying bias either in the participants or the interface.
 A similar trend was observed in~\cite{stanley2006lateralization}. Further investigation with a larger participant pool is needed to determine this underlying bias, if any. 
 
-The error data was used to generate scatter plots that show the correlation between the target's direction presented by the guidance system to the participants and the one they thought the targets were.
-These plots are given in \cref{fig:correlation-results} and show a reasonably positive correlation between the guidance and the selected targets, indicating that the participants correctly interpreted the interface's output in most of the cases. 
-The Spearman correlation scores for each dataset, listed in \cref{tab:results}, confirm this, as well as the negative angle bias in the elevation dimensions.
-
-\begin{figure}[t]
+\begin{figure}
   \centering
   \includegraphics[width=1.0\columnwidth]{figures/correlation.png}
   \caption{Scatter plots that show the targets' actual positions and the participants' guesses, as well as the line of best fit showing the relationship between the data. }\label{fig:correlation-results}
 \end{figure}
 
+The error data was used to generate scatter plots that show the correlation between the target's direction presented by the guidance system to the participants and the one they thought the targets were.
+These plots are given in \cref{fig:correlation-results} and show a reasonably positive correlation between the guidance and the selected targets, indicating that the participants correctly interpreted the interface's output in most of the cases. 
+The Spearman correlation scores for each dataset, listed in \cref{tab:results}, confirm this, as well as the negative angle bias in the elevation dimensions.
+
 \section{Conclusion}\label{sec:conclusion}
 
 In this work, we proposed a new audio interface that conveys a target's pan and elevation angles through a spatialised audio tone.
-The tone's pitch is adjusted to convey the elevation and compensate for the shortcomings of bone-conduction headsets in transmitting the elevation component of a spatialised signal.
-The results obtained from a simple pointing experiment are encouraging as they show improved performance over purely spatialised signals transmitted via bone-conduction headphones.
+The tone's pitch is adjusted to convey the elevation and compensate for the shortcomings of bone-conducting headsets in transmitting the elevation component of a spatialised signal.
+The results obtained from a simple pointing experiment are encouraging as they show improved performance over purely spatialised signals transmitted via bone-conducting headphones.
 Furthermore, the limitations of the latter were largely overcome by communicating the target's elevation with the tone's pitch, achieving pan and elevation errors comparable to that of normal over-ear headphones.
 
 Future work should consider a more in-depth investigation with a larger participant pool and a more detailed statistical analysis.
