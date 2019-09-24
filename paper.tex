@@ -1,37 +1,34 @@
 \documentclass{llncs}
 
 \usepackage{booktabs}
-\usepackage[ruled]{algorithm2e} % For algorithms
+\usepackage[ruled]{algorithm2e} 
 
 \usepackage{siunitx}
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage[caption=false]{subfig}
 \usepackage[capitalise]{cleveref}
-\usepackage{todonotes}
-
-\usepackage{soul}
-\DeclareRobustCommand{\tofix}[1]{{\sethlcolor{yellow}\hl{[#1]}}}
 
 \begin{document}
 
 \title{Bone-Conduction Audio Interface to\\Guide People with Visual Impairments}
 
 \author{Jacobus C. Lock\inst{1} \and 
-Iain Gilchrist\inst{2} \and
+Iain D. Gilchrist\inst{2} \and
 Grzegorz Cielniak\inst{1} \and
 Nicola Bellotto\inst{1}}
 
-\institute{University of Lincoln \email{\{jlock, gcielniak, nbellotto\}@lincoln.ac.uk} \and
-	   University of Bristol \email{i.d.gilchrist@bristol.ac.uk}}
+\institute{University of Lincoln, Lincoln, LN6 7TS, UK \email{\{jlock, gcielniak, nbellotto\}@lincoln.ac.uk} \and
+	   University of Bristol, Bristol, BS8 1TH, UK \email{i.d.gilchrist@bristol.ac.uk}}
 
 \authorrunning{Jacobus C. Lock et.\ al.}
+\titlerunning{Bone-conduction Interface For People with Visual Impairments}
 
 \maketitle
 \setcounter{footnote}{0}
 
 \begin{abstract}
-  The ActiVis\footnote{\url{https://lcas.github.io/ActiVis/}} project's aim is to build a mobile guidance aid to help people with limited vision find objects in an unknown environment.
+  The ActiVis project's aim is to build a mobile guidance aid to help people with limited vision find objects in an unknown environment.
   This system uses bone-conduction headphones to transmit audio signals to the user and requires an effective non-visual interface.
   To this end, we propose a new audio-based interface that uses a spatialised signal to convey a target's position on the horizontal plane. 
   The vertical position on the median plan is given by adjusting the tone's pitch to overcome the audio localisation limitations of bone-conduction headphones. 
@@ -113,7 +110,6 @@ Alternative solutions, such as open-back headphones, were also considered. These
 Humans localise a sound source in 3 dimensions by considering cues recorded in one ear (monaural cues) and comparing cues received at both ears (binaural cues)~\cite{blauert1997spatial,blauert1969sound}.
 The binaural cues include inter-aural time and level differences (ITD and ILD respectively) that help to determine a source's location on the horizontal plane.
 Monaural cues are taken from the interaction of the sound with the human anatomy, e.g.\ head, shoulders, outer ear, before it enters the ear canal.
-%The user's anatomy acts as a filter and the direction the sound wave hits the body activates different filter resonances, attenuating or accentuating different frequency bands.
 When the modified audio signal enters the inner ear canal, the human brain is able to analyse the frequency response and accurately determine the position of the sound source on the median plane. 
 The distance to the source is simply derived as the intensity, or volume, of the source, i.e.\ a louder sound would appear closer to the user than a softer one. 
 
@@ -232,7 +228,6 @@ The results in~\cite{katz2011spatial,zwiers2001spatial} reported a similar trend
 The elevation estimation performance for both groups deteriorated when compared to their pan estimation results, which was somewhat expected given previous experimental results on human audition~\cite{barfield1997visual}. 
 The mean absolute errors of the participants are \SI{0.25}{\radian} and \SI{0.36}{\radian} for groups \textit{G1} and \textit{G2}, respectively.
 As with the pan estimation errors, the participants from \textit{G1} seemed more adept at estimating the correct elevation.
-%However, the difference is not as significant as for the pan, with \textit{G1} displaying a 36\% improvement over \textit{G2} in their elevation estimation vs. 42.5\% in the pan dimension. 
 Comparing these results to methods that convey elevation through an HRTF, we see an improvement of approximately 63\% and 47\% for each group~\cite{schonstein2008comparison}. 
 Indeed, the performance is comparable to that of open-back and expensive in-ear headphones.
 There is a more modest improvement of 43\% in \textit{G1} and 16\% for \textit{G2} when compared to the individualised and adjusted HRTFs in~\cite{stanley2006lateralization}.
